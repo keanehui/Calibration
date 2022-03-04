@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0729E1E927D0AA8C00DCDE2C /* EyeTestMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */; };
+		072C7A5B27CB6A6E005F8185 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 072C7A5A27CB6A6E005F8185 /* pop.mp3 */; };
+		073B129D27AD0BAB00BAAF9D /* CalibrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */; };
+		073B129F27AD0BAB00BAAF9D /* CalibrationIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B129E27AD0BAB00BAAF9D /* CalibrationIntroView.swift */; };
+		073B12A127AD0BAB00BAAF9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A027AD0BAB00BAAF9D /* Assets.xcassets */; };
+		073B12A427AD0BAB00BAAF9D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */; };
+		073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */; };
+		075A270B27CE46B1003C2052 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A270A27CE46B1003C2052 /* Test.swift */; };
+		075A270D27CE51D9003C2052 /* EyeTest2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A270C27CE51D9003C2052 /* EyeTest2View.swift */; };
+		07649CCC27C8D2160039148D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649CCB27C8D2160039148D /* HapticManager.swift */; };
+		07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649CCD27C8D30C0039148D /* HapticTest.swift */; };
+		07846F0827C62FE60077517A /* CalibrationInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07846F0727C62FE60077517A /* CalibrationInstructionView.swift */; };
+		07846F0A27C6301B0077517A /* CalibrationCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07846F0927C6301B0077517A /* CalibrationCameraView.swift */; };
+		0796CC2227C23442004F53A6 /* ARKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0796CC2127C23442004F53A6 /* ARKitView.swift */; };
+		079EB88627CCC9C100B683E1 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88527CCC9C100B683E1 /* HomePageView.swift */; };
+		079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */; };
+		079EB88A27CCDE0900B683E1 /* CalibrationPreIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */; };
+		07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE89DE27CB588B00CA2520 /* SoundManager.swift */; };
+		07D2C4FD27AE659D00D3B7EE /* EyeTest1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */; };
+		07E45C7927D0C51900887ABF /* DistanceCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E45C7827D0C51900887ABF /* DistanceCapsule.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTestMainView.swift; sourceTree = "<group>"; };
+		072C7A5A27CB6A6E005F8185 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		073B129927AD0BAB00BAAF9D /* Calibration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calibration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationApp.swift; sourceTree = "<group>"; };
+		073B129E27AD0BAB00BAAF9D /* CalibrationIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationIntroView.swift; sourceTree = "<group>"; };
+		073B12A027AD0BAB00BAAF9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationMainView.swift; sourceTree = "<group>"; };
+		075A270A27CE46B1003C2052 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		075A270C27CE51D9003C2052 /* EyeTest2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTest2View.swift; sourceTree = "<group>"; };
+		07649CCB27C8D2160039148D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		07649CCD27C8D30C0039148D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
+		07846F0727C62FE60077517A /* CalibrationInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationInstructionView.swift; sourceTree = "<group>"; };
+		07846F0927C6301B0077517A /* CalibrationCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationCameraView.swift; sourceTree = "<group>"; };
+		0796CC2127C23442004F53A6 /* ARKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitView.swift; sourceTree = "<group>"; };
+		079EB88527CCC9C100B683E1 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPostIntro.swift; sourceTree = "<group>"; };
+		079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPreIntro.swift; sourceTree = "<group>"; };
+		07BE89DE27CB588B00CA2520 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTest1View.swift; sourceTree = "<group>"; };
+		07E45C7827D0C51900887ABF /* DistanceCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCapsule.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		073B129627AD0BAB00BAAF9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		073B129027AD0BAB00BAAF9D = {
+			isa = PBXGroup;
+			children = (
+				073B129B27AD0BAB00BAAF9D /* Calibration */,
+				073B129A27AD0BAB00BAAF9D /* Products */,
+				07E4993927D0BC48006BB5A6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		073B129A27AD0BAB00BAAF9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				073B129927AD0BAB00BAAF9D /* Calibration.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		073B129B27AD0BAB00BAAF9D /* Calibration */ = {
+			isa = PBXGroup;
+			children = (
+				07F2FDFE27CB5F0700A7DF4D /* Sounds */,
+				07649CCD27C8D30C0039148D /* HapticTest.swift */,
+				07649CCB27C8D2160039148D /* HapticManager.swift */,
+				07BE89DE27CB588B00CA2520 /* SoundManager.swift */,
+				073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */,
+				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
+				077B1D8927CFAB1200511D16 /* CalibrationIntroduction */,
+				077B1D8B27CFAB3C00511D16 /* CalibrationMain */,
+				0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */,
+				07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */,
+				075A270C27CE51D9003C2052 /* EyeTest2View.swift */,
+				075A270A27CE46B1003C2052 /* Test.swift */,
+				073B12A027AD0BAB00BAAF9D /* Assets.xcassets */,
+				073B12A227AD0BAB00BAAF9D /* Preview Content */,
+			);
+			path = Calibration;
+			sourceTree = "<group>";
+		};
+		073B12A227AD0BAB00BAAF9D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		077B1D8927CFAB1200511D16 /* CalibrationIntroduction */ = {
+			isa = PBXGroup;
+			children = (
+				073B129E27AD0BAB00BAAF9D /* CalibrationIntroView.swift */,
+				079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */,
+				079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */,
+			);
+			path = CalibrationIntroduction;
+			sourceTree = "<group>";
+		};
+		077B1D8B27CFAB3C00511D16 /* CalibrationMain */ = {
+			isa = PBXGroup;
+			children = (
+				073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */,
+				07846F0927C6301B0077517A /* CalibrationCameraView.swift */,
+				0796CC2127C23442004F53A6 /* ARKitView.swift */,
+				07846F0727C62FE60077517A /* CalibrationInstructionView.swift */,
+				07E45C7827D0C51900887ABF /* DistanceCapsule.swift */,
+			);
+			path = CalibrationMain;
+			sourceTree = "<group>";
+		};
+		07E4993927D0BC48006BB5A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		07F2FDFE27CB5F0700A7DF4D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				072C7A5A27CB6A6E005F8185 /* pop.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		073B129827AD0BAB00BAAF9D /* Calibration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 073B12A727AD0BAB00BAAF9D /* Build configuration list for PBXNativeTarget "Calibration" */;
+			buildPhases = (
+				073B129527AD0BAB00BAAF9D /* Sources */,
+				073B129627AD0BAB00BAAF9D /* Frameworks */,
+				073B129727AD0BAB00BAAF9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Calibration;
+			productName = Calibration;
+			productReference = 073B129927AD0BAB00BAAF9D /* Calibration.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		073B129127AD0BAB00BAAF9D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					073B129827AD0BAB00BAAF9D = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 073B129427AD0BAB00BAAF9D /* Build configuration list for PBXProject "Calibration" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 073B129027AD0BAB00BAAF9D;
+			productRefGroup = 073B129A27AD0BAB00BAAF9D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				073B129827AD0BAB00BAAF9D /* Calibration */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		073B129727AD0BAB00BAAF9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				072C7A5B27CB6A6E005F8185 /* pop.mp3 in Resources */,
+				073B12A427AD0BAB00BAAF9D /* Preview Assets.xcassets in Resources */,
+				073B12A127AD0BAB00BAAF9D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		073B129527AD0BAB00BAAF9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D2C4FD27AE659D00D3B7EE /* EyeTest1View.swift in Sources */,
+				07846F0A27C6301B0077517A /* CalibrationCameraView.swift in Sources */,
+				0796CC2227C23442004F53A6 /* ARKitView.swift in Sources */,
+				075A270B27CE46B1003C2052 /* Test.swift in Sources */,
+				07846F0827C62FE60077517A /* CalibrationInstructionView.swift in Sources */,
+				075A270D27CE51D9003C2052 /* EyeTest2View.swift in Sources */,
+				079EB88A27CCDE0900B683E1 /* CalibrationPreIntro.swift in Sources */,
+				073B129F27AD0BAB00BAAF9D /* CalibrationIntroView.swift in Sources */,
+				073B129D27AD0BAB00BAAF9D /* CalibrationApp.swift in Sources */,
+				07E45C7927D0C51900887ABF /* DistanceCapsule.swift in Sources */,
+				079EB88627CCC9C100B683E1 /* HomePageView.swift in Sources */,
+				0729E1E927D0AA8C00DCDE2C /* EyeTestMainView.swift in Sources */,
+				079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */,
+				07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */,
+				07649CCC27C8D2160039148D /* HapticManager.swift in Sources */,
+				07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */,
+				073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		073B12A527AD0BAB00BAAF9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		073B12A627AD0BAB00BAAF9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		073B12A827AD0BAB00BAAF9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Calibration/Preview Content\"";
+				DEVELOPMENT_TEAM = QXL3558RH9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera will be used to calculate the distance between user's face and the screen. ";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kawonghui.Calibration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		073B12A927AD0BAB00BAAF9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Calibration/Preview Content\"";
+				DEVELOPMENT_TEAM = QXL3558RH9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera will be used to calculate the distance between user's face and the screen. ";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.kawonghui.Calibration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		073B129427AD0BAB00BAAF9D /* Build configuration list for PBXProject "Calibration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073B12A527AD0BAB00BAAF9D /* Debug */,
+				073B12A627AD0BAB00BAAF9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		073B12A727AD0BAB00BAAF9D /* Build configuration list for PBXNativeTarget "Calibration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073B12A827AD0BAB00BAAF9D /* Debug */,
+				073B12A927AD0BAB00BAAF9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 073B129127AD0BAB00BAAF9D /* Project object */;
+}
