@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0708413A27D2208A00BE253C /* EyeTestQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0708413927D2208A00BE253C /* EyeTestQuestion.swift */; };
+		0708414027D2238000BE253C /* EyeTest3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0708413F27D2238000BE253C /* EyeTest3View.swift */; };
 		0729E1E927D0AA8C00DCDE2C /* EyeTestMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */; };
 		072C7A5B27CB6A6E005F8185 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 072C7A5A27CB6A6E005F8185 /* pop.mp3 */; };
 		073B129D27AD0BAB00BAAF9D /* CalibrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0708413927D2208A00BE253C /* EyeTestQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTestQuestion.swift; sourceTree = "<group>"; };
+		0708413F27D2238000BE253C /* EyeTest3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTest3View.swift; sourceTree = "<group>"; };
 		0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTestMainView.swift; sourceTree = "<group>"; };
 		072C7A5A27CB6A6E005F8185 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
 		073B129927AD0BAB00BAAF9D /* Calibration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calibration.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +68,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0708413827D21A0400BE253C /* EyeTests */ = {
+			isa = PBXGroup;
+			children = (
+				0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */,
+				07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */,
+				075A270C27CE51D9003C2052 /* EyeTest2View.swift */,
+				0708413F27D2238000BE253C /* EyeTest3View.swift */,
+				0708413927D2208A00BE253C /* EyeTestQuestion.swift */,
+			);
+			path = EyeTests;
+			sourceTree = "<group>";
+		};
 		073B129027AD0BAB00BAAF9D = {
 			isa = PBXGroup;
 			children = (
@@ -92,9 +108,7 @@
 				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
 				077B1D8927CFAB1200511D16 /* CalibrationIntroduction */,
 				077B1D8B27CFAB3C00511D16 /* CalibrationMain */,
-				0729E1E827D0AA8C00DCDE2C /* EyeTestMainView.swift */,
-				07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */,
-				075A270C27CE51D9003C2052 /* EyeTest2View.swift */,
+				0708413827D21A0400BE253C /* EyeTests */,
 				075A270A27CE46B1003C2052 /* Test.swift */,
 				073B12A027AD0BAB00BAAF9D /* Assets.xcassets */,
 				073B12A227AD0BAB00BAAF9D /* Preview Content */,
@@ -227,12 +241,14 @@
 				079EB88A27CCDE0900B683E1 /* CalibrationPreIntro.swift in Sources */,
 				073B129F27AD0BAB00BAAF9D /* CalibrationIntroView.swift in Sources */,
 				073B129D27AD0BAB00BAAF9D /* CalibrationApp.swift in Sources */,
+				0708413A27D2208A00BE253C /* EyeTestQuestion.swift in Sources */,
 				07E45C7927D0C51900887ABF /* DistanceCapsule.swift in Sources */,
 				079EB88627CCC9C100B683E1 /* HomePageView.swift in Sources */,
 				0729E1E927D0AA8C00DCDE2C /* EyeTestMainView.swift in Sources */,
 				079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */,
 				07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */,
 				07649CCC27C8D2160039148D /* HapticManager.swift in Sources */,
+				0708414027D2238000BE253C /* EyeTest3View.swift in Sources */,
 				07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */,
 				073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */,
 			);

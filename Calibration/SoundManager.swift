@@ -15,8 +15,7 @@ class SoundManager {
     
     func playSound(filename: String) {
         let filenameArr: [String] = filename.components(separatedBy: ".")
-        guard let url = Bundle.main.url(forResource: filenameArr[0], withExtension: filenameArr[1])
-        else { return }
+        guard let url = Bundle.main.url(forResource: filenameArr[0], withExtension: filenameArr[1]) else { return }
         
         do {
             player = try AVAudioPlayer(contentsOf: url)

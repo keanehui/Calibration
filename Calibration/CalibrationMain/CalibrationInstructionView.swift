@@ -85,7 +85,7 @@ struct CalibrationInstructionView: View {
                     SoundManager.shared.playSound(filename: "pop.mp3")
                     scaled = false
                     DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(200)) {
-                        withAnimation(.easeInOut(duration: 2)) { // Sound if valid
+                        withAnimation(.easeOut(duration: 2)) { // Sound if valid
                             scaled.toggle()
                         }
                     }

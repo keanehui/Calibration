@@ -12,11 +12,14 @@ struct EyeTestMainView: View {
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var eyeTestNumber: Int = 1
+    @State private var text: String = ""
     
+    // *** distance tracking ***
     @State private var isTracking: Bool = true
     @State private var isPresentingSheet: Bool = false
     @State private var isPresentingAlert: Bool = false
     @State private var shouldEndTest: Bool = false
+    // *** distance tracking ***
     
     private var distanceStatus: DistanceStatus {
         getDistanceStatus(distance)
@@ -26,16 +29,23 @@ struct EyeTestMainView: View {
         ZStack {
             Group {
                 if eyeTestNumber == 1 {
-                    EyeTest1View(eyeTestNumber: $eyeTestNumber)
+                    EyeTest1View(eyeTestNumber: $eyeTestNumber, text: $text)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5))) // BUG
                 } else if eyeTestNumber == 2 {
-                    EyeTest2View(eyeTestNumber: $eyeTestNumber)
+                    EyeTest2View(eyeTestNumber: $eyeTestNumber, text: $text)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5)))
+                } else if eyeTestNumber == 3 {
+                    EyeTest3View(eyeTestNumber: $eyeTestNumber, text: $text)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5)))
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         
         // Background distance tracking below
         .overlay(alignment: .top, content: {
             DistanceCapsule(distance: $distance)
+                .zIndex(-1.0)
         })
         .onChange(of: shouldEndTest, perform: { newValue in
             if newValue == true {
