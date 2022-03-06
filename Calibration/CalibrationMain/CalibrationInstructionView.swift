@@ -53,12 +53,7 @@ struct CalibrationInstructionView: View {
                             .makeInstructionShort()
                             .scaleEffect(scaled ? 2 : 1)
                             .onAppear {
-                                scaled = false
-                                DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
-                                    withAnimation(scalingAnimation) {
-                                        scaled.toggle()
-                                    }
-                                }
+                                startScalingDelayed()
                             }
                     }
                 }
@@ -68,7 +63,6 @@ struct CalibrationInstructionView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 70, weight: .regular, design: .rounded))
                     .foregroundColor(.green)
-                    .padding(.bottom)
                     .scaleEffect(scaled ? 1.2 : 1)
                     .transition(opacityInTransition)
                     .onAppear {
@@ -90,12 +84,7 @@ struct CalibrationInstructionView: View {
                             .makeInstructionShort()
                             .scaleEffect(scaled ? 0.5 : 1)
                             .onAppear {
-                                scaled = false
-                                DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
-                                    withAnimation(scalingAnimation) {
-                                        scaled.toggle()
-                                    }
-                                }
+                                startScalingDelayed()
                             }
                     }
                 }
@@ -123,6 +112,7 @@ struct CalibrationInstructionView: View {
                 Text("Please maintain this distance during the test. ")
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
+                    .padding(.top)
             }
             if (distanceStatus == .tooFar) {
                 Text("Your phone is too far away from your face. \nPlease move your iPhone closer. ")
@@ -132,6 +122,15 @@ struct CalibrationInstructionView: View {
         }
         .foregroundColor(instructionThemeColor)
         .transition(opacityInTransition)
+    }
+    
+    private func startScalingDelayed() {
+        scaled = false
+        DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
+            withAnimation(scalingAnimation) {
+                scaled.toggle()
+            }
+        }
     }
 }
 

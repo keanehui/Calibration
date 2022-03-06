@@ -34,10 +34,12 @@ let RANGE_L = 40
 let RANGE_R = 50
 let WARNING_ZONE_IN = 3
 let WARNING_ZONE_OUT = 5
+let HAPTIC_ENABLED: Bool = true
+let SOUND_ENABLED: Bool = true
 
 func getDistanceStatus(_ distance: Int) -> DistanceStatus {
     switch distance {
-    case ...0:
+    case 0:
         return .missing
     case 1...(RANGE_L-1):
         return .tooClose

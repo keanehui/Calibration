@@ -15,16 +15,6 @@ struct EyeTest2View: View {
         VStack {
             EyeTestQuestion(imageName: "colorblind-test-1-29", text: $text)
                 .padding()
-            Button {
-                eyeTestNumber += 1
-                text = ""
-            } label: {
-                Text("Done")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(.blue)
-                    .cornerRadius(15)
-            }
         }
     }
 }

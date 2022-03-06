@@ -15,6 +15,7 @@ struct EyeTestMainView: View {
     @State private var text: String = ""
     
     // *** distance tracking ***
+    @State private var trackingEnabled: Bool = false
     @State private var isTracking: Bool = true
     @State private var isPresentingSheet: Bool = false
     @State private var isPresentingAlert: Bool = false
@@ -26,26 +27,39 @@ struct EyeTestMainView: View {
     }
     
     var body: some View {
-        ZStack {
+        VStack {
             Group {
                 if eyeTestNumber == 1 {
                     EyeTest1View(eyeTestNumber: $eyeTestNumber, text: $text)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5))) // BUG
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut)) // BUG
                 } else if eyeTestNumber == 2 {
                     EyeTest2View(eyeTestNumber: $eyeTestNumber, text: $text)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut))
                 } else if eyeTestNumber == 3 {
                     EyeTest3View(eyeTestNumber: $eyeTestNumber, text: $text)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)).animation(.easeInOut(duration: 0.5)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            if eyeTestNumber != 3 {
+                Button {
+                    withAnimation {
+                        eyeTestNumber += 1
+                        text = ""
+                    }
+                } label: {
+                    Text("Done")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.blue)
+                        .cornerRadius(15)
+                }
+            }
         }
         
-        // Background distance tracking below
+        // *** Background distance tracking below ***
         .overlay(alignment: .top, content: {
             DistanceCapsule(distance: $distance)
-                .zIndex(-1.0)
         })
         .onChange(of: shouldEndTest, perform: { newValue in
             if newValue == true {
@@ -57,7 +71,7 @@ struct EyeTestMainView: View {
                 CalibrationCameraView(distance: $distance)
                     .opacity(0.0)
                     .onChange(of: distanceStatus) { newValue in
-                        if newValue != .valid {
+                        if trackingEnabled && newValue != .valid {
                             isCalibrated = false
                             isPresentingAlert = true
                             HapticManager.shared.notification(type: .error)
@@ -65,11 +79,17 @@ struct EyeTestMainView: View {
                         }
                     }
                     .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                            trackingEnabled = true
+                        }
                         if isCalibrated == false {
                             isPresentingAlert = true
                             HapticManager.shared.notification(type: .error)
                             isTracking = false
                         }
+                    }
+                    .onDisappear {
+                        trackingEnabled = false
                     }
             }
         }

@@ -55,8 +55,7 @@ struct CalibrationMainView: View {
             Spacer()
         }
         .onAppear {
-            timer.upstream.connect().cancel()
-            isCalibrated = false
+            timerDisconnect()
             HapticManager.shared.notification(type: .warning)
         }
         .onChange(of: distance) { newValue in // Haptic if distance changes
@@ -87,15 +86,13 @@ struct CalibrationMainView: View {
                 TimedButton
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .cornerRadius(15)
-                    .transition(.offset(x: 0, y: 100).animation(.spring()))
+                    .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity).animation(.easeInOut), removal: .opacity.animation(.linear(duration: 0.0))))
                     .zIndex(3.0)
                     .onAppear {
-                        secondsSinceValid = 0.0
-                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        timerConnect()
                     }
                     .onDisappear {
-                        secondsSinceValid = 0.0
-                        timer.upstream.connect().cancel()
+                        timerDisconnect()
                     }
                     .onReceive(timer) { _ in
                         if secondsSinceValid < 5 {
@@ -103,15 +100,11 @@ struct CalibrationMainView: View {
                                 secondsSinceValid += 1
                             }
                         } else {
-                            isCalibrated = true
-                            HapticManager.shared.notification(type: .success)
-                            self.presentationMode.wrappedValue.dismiss()
+                            calibrationSuccess()
                         }
                     }
                     .onTapGesture {
-                        isCalibrated = true
-                        HapticManager.shared.notification(type: .success)
-                        self.presentationMode.wrappedValue.dismiss()
+                        calibrationSuccess()
                     }
             }
         }
@@ -134,6 +127,22 @@ struct CalibrationMainView: View {
             }
         }
         .drawingGroup()
+    }
+    
+    private func calibrationSuccess() {
+        isCalibrated = true
+        HapticManager.shared.notification(type: .success)
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    private func timerConnect() {
+        secondsSinceValid = 0.0
+        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    }
+    
+    private func timerDisconnect() {
+        secondsSinceValid = 0.0
+        timer.upstream.connect().cancel()
     }
 }
 
