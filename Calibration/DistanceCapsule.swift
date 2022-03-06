@@ -17,9 +17,7 @@ struct DistanceCapsule: View {
     var body: some View {
         ZStack {
             Capsule(style: .circular)
-            .opacity(0.7)
             .foregroundColor(distanceColor)
-            .background(.ultraThinMaterial)
             .frame(width: 90, height: 30)
             .cornerRadius(15)
             .animation(.linear, value: distanceColor)

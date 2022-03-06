@@ -8,34 +8,41 @@
 import SwiftUI
 
 struct Test: View {
-    @State private var portion: CGFloat = 0.1
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var isPresenting: Bool = true
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 0, style: .circular)
-                    .fill(.teal)
-                RoundedRectangle(cornerRadius: 0, style: .circular)
-                    .fill(.green)
-                    .animation(.linear, value: portion)
-                    .frame(width: portion / 5.0 * geometry.size.width)
-                    .onReceive(timer) { _ in
-                        let _ = print("tick \(portion)")
-                        withAnimation {
-                            portion += 1
-                        }
-                    }
-                Text("Done")
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
+        
+        ZStack(alignment: .top) {
+            RoundedRectangle(cornerRadius: 0)
+                .foregroundColor(.yellow)
+                .ignoresSafeArea()
+                .zIndex(1.0)
+            Button {
+                withAnimation {
+                    isPresenting.toggle()
+                }
+            } label: {
+                Text("Button")
+                    .padding()
+                    .background(.white)
             }
+            .zIndex(1.0)
+
+            
+            if isPresenting {
+                RoundedRectangle(cornerRadius: 40)
+                    .foregroundColor(.orange)
+                    .offset(x: 0, y: 300)
+                    .transition(.move(edge: .bottom))
+                    .animation(.spring(), value: isPresenting)
+                    .zIndex(2.0)
+            }
+            
+            
+            
         }
-        .frame(height: 60)
-        .cornerRadius(15)
-        .padding()
+        
     }
 }
 

@@ -13,7 +13,6 @@ struct CalibrationMainView: View {
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var secondsSinceValid: CGFloat = 0.0
-//    @State private var isTimerRunning: Bool = false
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     private var distanceStatus: DistanceStatus {
@@ -29,11 +28,6 @@ struct CalibrationMainView: View {
             Capsule()
                 .fill(Color.secondary)
                 .frame(width: 50, height: 6)
-                .onAppear {
-                    secondsSinceValid = 0.0
-                    timer.upstream.connect().cancel()
-                    isCalibrated = false
-                }
             CalibrationCameraView(distance: $distance)
                 .overlay(alignment: .top, content: {
                     DistanceCapsule(distance: $distance)
@@ -48,13 +42,9 @@ struct CalibrationMainView: View {
                 }
             Spacer()
             CalibrationInstructionView(distance: $distance)
-                .offset(x: 0, y: distanceStatus == .valid ? -10 : 0)
-                .onChange(of: distance, perform: { newValue in // Haptic if distance changes
-                    HapticManager.shared.impact(style: .soft)
-                })
+                .offset(x: 0, y: distanceStatus == .valid ? -30 : 0)
                 .onChange(of: distanceStatus) { newValue in // Haptic
                     isCalibrated = false
-                    secondsSinceValid = 0.0
                     if newValue == .missing {
                         HapticManager.shared.notification(type: .error)
                     }
@@ -63,6 +53,24 @@ struct CalibrationMainView: View {
                     }
                 }
             Spacer()
+        }
+        .onAppear {
+            timer.upstream.connect().cancel()
+            isCalibrated = false
+            HapticManager.shared.notification(type: .warning)
+        }
+        .onChange(of: distance) { newValue in // Haptic if distance changes
+            HapticManager.shared.impact(style: .soft)
+        }
+        .onChange(of: distanceStatus) { newValue in
+            if newValue == .valid {
+                do {
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch let error {
+                    print("Setting AVAudioSession active failed. \(error.localizedDescription)")
+                }
+                SoundManager.shared.playSound(filename: "pop.mp3")
+            }
         }
         .overlay(alignment: .topLeading, content: {
             Button {
@@ -77,30 +85,34 @@ struct CalibrationMainView: View {
         .overlay(alignment: .bottom) { // TimedButton
             if distanceStatus == .valid {
                 TimedButton
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                .cornerRadius(15)
-                .onAppear {
-                    timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                }
-                .onDisappear {
-                    timer.upstream.connect().cancel()
-                }
-                .onReceive(timer) { _ in
-                    if secondsSinceValid < 5 {
-                        withAnimation {
-                            secondsSinceValid += 1
-                        }
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(500)) {
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .cornerRadius(15)
+                    .transition(.offset(x: 0, y: 100).animation(.spring()))
+                    .zIndex(3.0)
+                    .onAppear {
+                        secondsSinceValid = 0.0
+                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    }
+                    .onDisappear {
+                        secondsSinceValid = 0.0
+                        timer.upstream.connect().cancel()
+                    }
+                    .onReceive(timer) { _ in
+                        if secondsSinceValid < 5 {
+                            withAnimation {
+                                secondsSinceValid += 1
+                            }
+                        } else {
                             isCalibrated = true
+                            HapticManager.shared.notification(type: .success)
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }
-                }
-                .onTapGesture {
-                    isCalibrated = true
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+                    .onTapGesture {
+                        isCalibrated = true
+                        HapticManager.shared.notification(type: .success)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
             }
         }
         .padding()
@@ -121,6 +133,7 @@ struct CalibrationMainView: View {
                     .frame(maxWidth: .infinity)
             }
         }
+        .drawingGroup()
     }
 }
 

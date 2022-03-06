@@ -25,92 +25,84 @@ struct CalibrationInstructionView: View {
         VStack {
             instructionShortView
             instructionFullView
+                .drawingGroup()
         }
-        .offset(x: 0, y: distanceStatus == .valid ? -20 : 0)
     }
     
-    let commonAnimation: Animation = Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true)
+    let opacityInTransition: AnyTransition = AnyTransition.asymmetric(insertion: .opacity.animation(.linear(duration: 0.3)), removal: .opacity.animation(.linear(duration: 0.0)))
+    let scalingAnimation: Animation = Animation.easeInOut(duration: 0.7).repeatForever(autoreverses: true)
+    let scalingAnimationDelay: Int = 500
     
     private var instructionShortView: some View {
         Group {
             if (distanceStatus == .missing) {
                 Text("Show your face")
                     .makeInstructionShort()
+                    .transition(opacityInTransition)
                     .onAppear {
                         scaled = false
-                        DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(200)) {
-                            withAnimation(commonAnimation) {
+                    }
+            }
+            if (distanceStatus == .tooClose) {
+                Group {
+                    if isDeltaSmall {
+                        Text("Just a bit further")
+                            .makeInstructionShort()
+                    } else {
+                        Text("Too close")
+                            .makeInstructionShort()
+                            .scaleEffect(scaled ? 2 : 1)
+                            .onAppear {
+                                scaled = false
+                                DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
+                                    withAnimation(scalingAnimation) {
+                                        scaled.toggle()
+                                    }
+                                }
+                            }
+                    }
+                }
+                .transition(opacityInTransition)
+            }
+            if (distanceStatus == .valid) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 70, weight: .regular, design: .rounded))
+                    .foregroundColor(.green)
+                    .padding(.bottom)
+                    .scaleEffect(scaled ? 1.2 : 1)
+                    .transition(opacityInTransition)
+                    .onAppear {
+                        scaled = false
+                        DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
+                            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                                 scaled.toggle()
                             }
                         }
                     }
             }
-            if (distanceStatus == .tooClose) {
-                if isDeltaSmall {
-                    Text("Just a bit further")
-                        .makeInstructionShort()
-                } else {
-                    Text("Too close")
-                        .makeInstructionShort()
-                        .scaleEffect(scaled ? 2 : 1)
-                        .onAppear {
-                            scaled = false
-                            DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(200)) {
-                                withAnimation(commonAnimation) {
-                                    scaled.toggle()
-                                }
-                            }
-                        }
-                }
-                
-            }
-            if (distanceStatus == .valid) {
-                Group {
-                    if scaled {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 70, weight: .regular, design: .rounded))
-                            .padding(.bottom)
-                    } else {
-                        Image(systemName: "checkmark.circle")
-                            .font(.system(size: 70, weight: .regular, design: .rounded))
-                            .padding(.bottom)
-                    }
-                }
-                .onAppear {
-                    do {
-                        try AVAudioSession.sharedInstance().setActive(true)
-                    } catch let error {
-                        print("Setting AVAudioSession active failed. \(error.localizedDescription)")
-                    }
-                    SoundManager.shared.playSound(filename: "pop.mp3")
-                    scaled = false
-                    DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(200)) {
-                        withAnimation(.easeOut(duration: 2)) { // Sound if valid
-                            scaled.toggle()
-                        }
-                    }
-                }
-            }
             if (distanceStatus == .tooFar) {
-                if isDeltaSmall {
-                    Text("Just a bit closer")
-                        .makeInstructionShort()
-                } else {
-                    Text("Too far")
-                        .makeInstructionShort()
-                        .scaleEffect(scaled ? 0.5 : 1)
-                        .onAppear {
-                            scaled = false
-                            DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(200)) {
-                                withAnimation(commonAnimation) {
-                                    scaled.toggle()
+                Group {
+                    if isDeltaSmall {
+                        Text("Just a bit closer")
+                            .makeInstructionShort()
+                    } else {
+                        Text("Too far")
+                            .makeInstructionShort()
+                            .scaleEffect(scaled ? 0.5 : 1)
+                            .onAppear {
+                                scaled = false
+                                DispatchQueue.main.asyncAfter(deadline: .now()+DispatchTimeInterval.milliseconds(scalingAnimationDelay)) {
+                                    withAnimation(scalingAnimation) {
+                                        scaled.toggle()
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
+                .transition(opacityInTransition)
             }
         }
-            .foregroundColor(instructionThemeColor)
+        .foregroundColor(instructionThemeColor)
     }
     
     private var instructionFullView: some View {
@@ -138,7 +130,8 @@ struct CalibrationInstructionView: View {
                     .padding(.top)
             }
         }
-            .foregroundColor(instructionThemeColor)
+        .foregroundColor(instructionThemeColor)
+        .transition(opacityInTransition)
     }
 }
 
@@ -161,13 +154,11 @@ extension Text {
             .font(.largeTitle)
             .multilineTextAlignment(.center)
             .lineLimit(1)
-            .transition(AnyTransition.asymmetric(insertion: .opacity.animation(.linear(duration: 0.5)), removal: .opacity.animation(.linear(duration: 0.0))))
     }
     
     func makeInstructionFull() -> some View {
         self.fontWeight(.bold)
             .multilineTextAlignment(.center)
-            .transition(AnyTransition.asymmetric(insertion: .opacity.animation(.linear(duration: 0.5)), removal: .opacity.animation(.linear(duration: 0.0))))
     }
 }
 

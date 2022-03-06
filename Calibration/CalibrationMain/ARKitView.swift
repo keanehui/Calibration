@@ -63,7 +63,9 @@ struct ARKitViewControllerRepresentable: UIViewControllerRepresentable {
                 let averageDistance = (leftEyeDistanceFromCamera.length() + rightEyeDistanceFromCamera.length()) / 2
                 let averageDistanceCM = Int(round(averageDistance * 100))
                 DispatchQueue.main.async {
-                    self.distance = averageDistanceCM
+                    withAnimation {
+                        self.distance = averageDistanceCM
+                    }
                 }
             }
         }

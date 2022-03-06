@@ -106,6 +106,7 @@
 				07BE89DE27CB588B00CA2520 /* SoundManager.swift */,
 				073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */,
 				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
+				07E45C7827D0C51900887ABF /* DistanceCapsule.swift */,
 				077B1D8927CFAB1200511D16 /* CalibrationIntroduction */,
 				077B1D8B27CFAB3C00511D16 /* CalibrationMain */,
 				0708413827D21A0400BE253C /* EyeTests */,
@@ -141,7 +142,6 @@
 				07846F0927C6301B0077517A /* CalibrationCameraView.swift */,
 				0796CC2127C23442004F53A6 /* ARKitView.swift */,
 				07846F0727C62FE60077517A /* CalibrationInstructionView.swift */,
-				07E45C7827D0C51900887ABF /* DistanceCapsule.swift */,
 			);
 			path = CalibrationMain;
 			sourceTree = "<group>";
