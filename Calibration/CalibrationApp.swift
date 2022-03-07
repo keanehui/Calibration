@@ -19,10 +19,7 @@ struct CalibrationApp: App {
                 HomePageView()
             }
             .onChange(of: scenePhase) { newValue in
-                let userDefaults = UserDefaults.standard
-                HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
-                SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
-                print("Setting changed. Haptic: \(HapticManager.shared.enabled) Sound: \(SoundManager.shared.enabled)")
+                updateManagerSettings()
             }
         }
     }
@@ -99,6 +96,15 @@ func getDistanceColor(_ distance: Int) -> Color {
 
 func openSetting() {
     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+}
+
+func updateManagerSettings() {
+    let userDefaults = UserDefaults.standard
+    HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
+    SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
+    T2SManager.shared.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
+    T2SManager.shared.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
+    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!)")
 }
 
 enum DistanceStatus: String {

@@ -9,17 +9,15 @@ import Foundation
 import AVKit
 import SwiftUI
 
-class SoundManager: ObservableObject {
-    static var shared = SoundManager()
+class SoundManager {
+    static let shared = SoundManager()
+    var player: AVAudioPlayer?
     var enabled: Bool
     
     init() {
         let userDefaults = UserDefaults.standard
-        userDefaults.setValue(ENABLE_SOUND_INIT, forKey: "user_sound_enabled")
-        self.enabled = ENABLE_SOUND_INIT
+        self.enabled = userDefaults.bool(forKey: "user_sound_enabled")
     }
-    
-    var player: AVAudioPlayer?
     
     func playSound(filename: String) {
         if !enabled {

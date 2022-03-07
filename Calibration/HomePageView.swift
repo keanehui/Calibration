@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct HomePageView: View {
     
@@ -22,8 +23,16 @@ struct HomePageView: View {
             } label: {
                 Text("Settings")
             }
+            Button {
+                T2SManager.shared.speakSentence(sentence: "Hello! Welcome to Calibration App. ")
+            } label: {
+                Text("Play")
+            }
         }
         .padding()
+        .onAppear {
+            
+        }
     }
     
 }

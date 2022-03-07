@@ -27,6 +27,7 @@
 		079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */; };
 		079EB88A27CCDE0900B683E1 /* CalibrationPreIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */; };
 		07A0385A27D504AD00614314 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07A0385927D504AD00614314 /* Settings.bundle */; };
+		07B48C7827D6401A00B4926F /* T2SManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B48C7727D6401A00B4926F /* T2SManager.swift */; };
 		07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE89DE27CB588B00CA2520 /* SoundManager.swift */; };
 		07C4A03E27D60F4700EF7767 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4A03D27D60F4700EF7767 /* Config.swift */; };
 		07C4A04027D614E500EF7767 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 07C4A03F27D614E500EF7767 /* silence.mp3 */; };
@@ -56,6 +57,7 @@
 		079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPostIntro.swift; sourceTree = "<group>"; };
 		079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPreIntro.swift; sourceTree = "<group>"; };
 		07A0385927D504AD00614314 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		07B48C7727D6401A00B4926F /* T2SManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T2SManager.swift; sourceTree = "<group>"; };
 		07BE89DE27CB588B00CA2520 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		07C4A03D27D60F4700EF7767 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		07C4A03F27D614E500EF7767 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				07C4A03C27D608A600EF7767 /* Tests */,
 				07649CCB27C8D2160039148D /* HapticManager.swift */,
 				07BE89DE27CB588B00CA2520 /* SoundManager.swift */,
+				07B48C7727D6401A00B4926F /* T2SManager.swift */,
 				07C4A03D27D60F4700EF7767 /* Config.swift */,
 				073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */,
 				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
@@ -267,6 +270,7 @@
 				079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */,
 				07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */,
 				07649CCC27C8D2160039148D /* HapticManager.swift in Sources */,
+				07B48C7827D6401A00B4926F /* T2SManager.swift in Sources */,
 				0708414027D2238000BE253C /* EyeTest3View.swift in Sources */,
 				07C4A03E27D60F4700EF7767 /* Config.swift in Sources */,
 				07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */,
