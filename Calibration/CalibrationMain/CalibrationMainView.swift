@@ -63,11 +63,6 @@ struct CalibrationMainView: View {
         }
         .onChange(of: distanceStatus) { newValue in
             if newValue == .valid {
-                do {
-                    try AVAudioSession.sharedInstance().setActive(true)
-                } catch let error {
-                    print("Setting AVAudioSession active failed. \(error.localizedDescription)")
-                }
                 SoundManager.shared.playSound(filename: "pop.mp3")
             }
         }

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+let RANGE_L = 40
+let RANGE_R = 50
+let WARNING_ZONE_IN = 3
+let WARNING_ZONE_OUT = 5
+let ENABLE_HAPTIC_INIT: Bool = true
+let ENABLE_SOUND_INIT: Bool = true

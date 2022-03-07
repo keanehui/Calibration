@@ -11,31 +11,37 @@ import AVFoundation
 @main
 struct CalibrationApp: App {
     
-    init() {
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(.ambient)
-        } catch let error {
-            print("Setting category to AVAudioSessionCategoryPlayback failed. \(error.localizedDescription)")
-        }
-    }
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 HomePageView()
             }
-//            Test()
+            .onChange(of: scenePhase) { newValue in
+                let userDefaults = UserDefaults.standard
+                HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
+                SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
+                print("Setting changed. Haptic: \(HapticManager.shared.enabled) Sound: \(SoundManager.shared.enabled)")
+            }
         }
     }
+    
+    init() {
+        SoundManager.shared.playSound(filename: "silence.mp3")
+    }
+    
+//    private func setAudioSessionCategory(category: AVAudioSession.Category) {
+//        do {
+//            let audioSession = AVAudioSession.sharedInstance()
+//            try audioSession.setCategory(category)
+//        } catch let error {
+//            print("Setting category to AVAudioSessionCategoryPlayback failed. \(error.localizedDescription)")
+//        }
+//    }
+    
+    
 }
-
-let RANGE_L = 40
-let RANGE_R = 50
-let WARNING_ZONE_IN = 3
-let WARNING_ZONE_OUT = 5
-let HAPTIC_ENABLED: Bool = true
-let SOUND_ENABLED: Bool = true
 
 func getDistanceStatus(_ distance: Int) -> DistanceStatus {
     switch distance {
@@ -74,17 +80,25 @@ func getDistanceColor(_ distance: Int) -> Color {
     }
     if distance < RANGE_L || distance > RANGE_R {
         let delta: Int = min(abs(distance-RANGE_L), abs(distance-RANGE_R))
-        if delta > WARNING_ZONE_OUT {
-            return Color.red
-        } else {
+        if delta < WARNING_ZONE_OUT {
             return Color.orange
+        } else {
+            return Color.red
         }
     }
-    if (distance >= RANGE_L && distance <= RANGE_R) && (abs(distance-RANGE_L)<=WARNING_ZONE_IN || abs(distance-RANGE_R)<=WARNING_ZONE_IN) {
-        return Color.yellow
-    } else {
-        return Color.green
+    if distance >= RANGE_L && distance <= RANGE_R {
+        let delta: Int = min(abs(distance-RANGE_L), abs(distance-RANGE_R))
+        if delta > WARNING_ZONE_IN {
+            return Color.green
+        } else {
+            return Color.yellow
+        }
     }
+    return Color.blue
+}
+
+func openSetting() {
+    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
 }
 
 enum DistanceStatus: String {

@@ -7,21 +7,16 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class HapticManager {
-    static let shared = HapticManager(enabled: HAPTIC_ENABLED)
-    private var enabled: Bool
+    static let shared = HapticManager()
+    var enabled: Bool
     
-    init(enabled: Bool = true) {
-        self.enabled = enabled
-    }
-    
-    func setEnable() {
-        enabled = true
-    }
-    
-    func setDisable() {
-        enabled = false
+    init() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(ENABLE_HAPTIC_INIT, forKey: "user_haptic_enabled")
+        self.enabled = ENABLE_HAPTIC_INIT
     }
     
     func notification(type: UINotificationFeedbackGenerator.FeedbackType) {

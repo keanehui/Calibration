@@ -10,16 +10,20 @@ import SwiftUI
 struct HomePageView: View {
     
     var body: some View {
-        VStack(spacing: 50) {
+        VStack(spacing: 30) {
             Text("Home Page")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             NavigationLink(destination: CalibrationIntroView()) {
                 Text("Start Test")
             }
-            .padding()
-
+            Button {
+                openSetting()
+            } label: {
+                Text("Settings")
+            }
         }
+        .padding()
     }
     
 }

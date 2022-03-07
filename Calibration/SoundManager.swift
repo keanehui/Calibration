@@ -7,21 +7,16 @@
 
 import Foundation
 import AVKit
+import SwiftUI
 
-class SoundManager {
-    static let shared = SoundManager(enabled: SOUND_ENABLED)
-    private var enabled: Bool
+class SoundManager: ObservableObject {
+    static var shared = SoundManager()
+    var enabled: Bool
     
-    init(enabled: Bool = true) {
-        self.enabled = enabled
-    }
-    
-    func setEnable() {
-        enabled = true
-    }
-    
-    func setDisable() {
-        enabled = false
+    init() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(ENABLE_SOUND_INIT, forKey: "user_sound_enabled")
+        self.enabled = ENABLE_SOUND_INIT
     }
     
     var player: AVAudioPlayer?
@@ -36,6 +31,7 @@ class SoundManager {
         do {
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
+            print("played: \(filename)")
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")
         }
