@@ -1,5 +1,5 @@
 //
-//  CalibrationCameraView.swift
+//  CalibrationMainView.swift
 //  Calibration
 //
 //  Created by Keane Hui on 4/2/2022.
@@ -7,13 +7,16 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct CalibrationMainView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var secondsSinceValid: CGFloat = 0.0
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timerSubscription: Cancellable?
+    private let timer = Timer.publish(every: 1, on: .main, in: .common)
+    
     
     private var distanceStatus: DistanceStatus {
         getDistanceStatus(distance)
@@ -131,13 +134,17 @@ struct CalibrationMainView: View {
     }
     
     private func timerConnect() {
-        secondsSinceValid = 0.0
-        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        DispatchQueue.main.async {
+            secondsSinceValid = 0.0
+            timerSubscription = timer.connect()
+            print("timer connected")
+        }
     }
     
     private func timerDisconnect() {
         secondsSinceValid = 0.0
-        timer.upstream.connect().cancel()
+        timerSubscription?.cancel()
+        timerSubscription = nil
     }
 }
 
