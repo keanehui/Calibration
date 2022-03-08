@@ -18,7 +18,7 @@ struct CalibrationApp: App {
                 HomePageView()
             }
             .onChange(of: scenePhase) { newValue in
-                updateManagerSettings()
+                fetchSettings()
             }
         }
     }
@@ -95,7 +95,7 @@ func openSetting() {
     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
 }
 
-func updateManagerSettings() {
+func fetchSettings() {
     let userDefaults = UserDefaults.standard
     HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
     SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
