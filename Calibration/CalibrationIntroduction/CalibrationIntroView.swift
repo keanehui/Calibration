@@ -16,9 +16,23 @@ struct CalibrationIntroView: View {
     var body: some View {
         VStack {
             if (!isCalibrated) {
+                let vi: String = "iPhone needs to know the distance between the screen and your face before the eye tests by doing a simple calibration. Do you want to continue to the calibration? "
                 CalibrationPreIntro(isPresenting: $isPresenting)
+                    .onAppear {
+                        T2SManager.shared.speakSentence(vi)
+                    }
+                    .onDisappear {
+                        T2SManager.shared.stopSpeaking()
+                    }
             } else {
+                let vi: String = "iPhone now knows the distance between the screen and your face. Please maintain the distance during the whole test. \n\nThe camera will be tracking the distance and you will be notified if you are too close or too far away from the screen. Do you want to continue to the eye tests? "
                 CalibrationPostIntro(distance: $distance, isCalibrated: $isCalibrated)
+                    .onAppear {
+                        T2SManager.shared.speakSentence(vi)
+                    }
+                    .onDisappear {
+                        T2SManager.shared.stopSpeaking()
+                    }
             }
         }
         .padding()

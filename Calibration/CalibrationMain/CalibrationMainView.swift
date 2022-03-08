@@ -1,5 +1,5 @@
 //
-//  CalibrationCameraView.swift
+//  CalibrationMainView.swift
 //  Calibration
 //
 //  Created by Keane Hui on 4/2/2022.
@@ -7,13 +7,16 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct CalibrationMainView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var secondsSinceValid: CGFloat = 0.0
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timerSubscription: Cancellable?
+    private let timer = Timer.publish(every: 1, on: .main, in: .common)
+    
     
     private var distanceStatus: DistanceStatus {
         getDistanceStatus(distance)
@@ -64,6 +67,20 @@ struct CalibrationMainView: View {
         .onChange(of: distanceStatus) { newValue in
             if newValue == .valid {
                 SoundManager.shared.playSound(filename: "pop.mp3")
+            }
+            switch newValue {
+            case .missing:
+                let vi: String = "Please show your face in front of the camera. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .tooClose:
+                let vi: String = "Your iPhone is too close! Move it away. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .valid:
+                let vi: String = "Perfect! Please maintain this distance during the tests"
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .tooFar:
+                let vi: String = "Your iPhone is too far away! Move it closer. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
             }
         }
         .overlay(alignment: .topLeading, content: {
@@ -131,13 +148,17 @@ struct CalibrationMainView: View {
     }
     
     private func timerConnect() {
-        secondsSinceValid = 0.0
-        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        DispatchQueue.main.async {
+            secondsSinceValid = 0.0
+            timerSubscription = timer.connect()
+            print("timer connected")
+        }
     }
     
     private func timerDisconnect() {
         secondsSinceValid = 0.0
-        timer.upstream.connect().cancel()
+        timerSubscription?.cancel()
+        timerSubscription = nil
     }
 }
 

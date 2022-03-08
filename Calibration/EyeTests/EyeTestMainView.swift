@@ -31,7 +31,7 @@ struct EyeTestMainView: View {
             Group {
                 if eyeTestNumber == 1 {
                     EyeTest1View(eyeTestNumber: $eyeTestNumber, text: $text)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut)) // BUG
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut))
                 } else if eyeTestNumber == 2 {
                     EyeTest2View(eyeTestNumber: $eyeTestNumber, text: $text)
                         .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut))
@@ -41,6 +41,13 @@ struct EyeTestMainView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onAppear {
+                let vi: String = "What number do you see in the image above? "
+                T2SManager.shared.speakSentence(vi)
+            }
+            .onDisappear {
+                T2SManager.shared.stopSpeaking()
+            }
             if eyeTestNumber != 3 {
                 Button {
                     withAnimation {

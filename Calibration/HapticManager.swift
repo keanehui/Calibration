@@ -15,8 +15,7 @@ class HapticManager {
     
     init() {
         let userDefaults = UserDefaults.standard
-        userDefaults.setValue(ENABLE_HAPTIC_INIT, forKey: "user_haptic_enabled")
-        self.enabled = ENABLE_HAPTIC_INIT
+        self.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
     }
     
     func notification(type: UINotificationFeedbackGenerator.FeedbackType) {

@@ -10,7 +10,6 @@ import AVFoundation
 
 @main
 struct CalibrationApp: App {
-    
     @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
@@ -19,27 +18,22 @@ struct CalibrationApp: App {
                 HomePageView()
             }
             .onChange(of: scenePhase) { newValue in
-                let userDefaults = UserDefaults.standard
-                HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
-                SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
-                print("Setting changed. Haptic: \(HapticManager.shared.enabled) Sound: \(SoundManager.shared.enabled)")
+                updateManagerSettings()
             }
         }
     }
     
     init() {
         SoundManager.shared.playSound(filename: "silence.mp3")
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.register(
+            defaults: ["user_haptic_enabled": true,
+                       "user_sound_enabled": true,
+                       "user_voice_instruction_enabled": false,
+                       "user_voice_instruction_rate": 0.5,
+                       "user_voice_instruction_pitch": 1.0])
     }
-    
-//    private func setAudioSessionCategory(category: AVAudioSession.Category) {
-//        do {
-//            let audioSession = AVAudioSession.sharedInstance()
-//            try audioSession.setCategory(category)
-//        } catch let error {
-//            print("Setting category to AVAudioSessionCategoryPlayback failed. \(error.localizedDescription)")
-//        }
-//    }
-    
     
 }
 
@@ -99,6 +93,16 @@ func getDistanceColor(_ distance: Int) -> Color {
 
 func openSetting() {
     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+}
+
+func updateManagerSettings() {
+    let userDefaults = UserDefaults.standard
+    HapticManager.shared.enabled = userDefaults.bool(forKey: "user_haptic_enabled")
+    SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
+    T2SManager.shared.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
+    T2SManager.shared.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
+    T2SManager.shared.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
+    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!) \(T2SManager.shared.pitchMultiplier!)")
 }
 
 enum DistanceStatus: String {
