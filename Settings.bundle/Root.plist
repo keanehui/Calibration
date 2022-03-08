@@ -42,7 +42,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enable Voice Instruction</string>
+			<string>Voice Instruction</string>
 			<key>Key</key>
 			<string>user_voice_instruction_enabled</string>
 			<key>DefaultValue</key>
