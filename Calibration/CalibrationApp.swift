@@ -10,7 +10,6 @@ import AVFoundation
 
 @main
 struct CalibrationApp: App {
-    
     @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
@@ -26,17 +25,14 @@ struct CalibrationApp: App {
     
     init() {
         SoundManager.shared.playSound(filename: "silence.mp3")
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.register(
+            defaults: ["user_haptic_enabled": true,
+                       "user_sound_enabled": true,
+                       "user_voice_instruction_enabled": false,
+                       "user_voice_instruction_rate": 0.5])
     }
-    
-//    private func setAudioSessionCategory(category: AVAudioSession.Category) {
-//        do {
-//            let audioSession = AVAudioSession.sharedInstance()
-//            try audioSession.setCategory(category)
-//        } catch let error {
-//            print("Setting category to AVAudioSessionCategoryPlayback failed. \(error.localizedDescription)")
-//        }
-//    }
-    
     
 }
 

@@ -50,21 +50,25 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Voice Intruction - Speed</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
+			<string>Speed</string>
+			<key>Titles</key>
+			<array>
+				<string>Fast</string>
+				<string>Default</string>
+				<string>Slow</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<real>0.6</real>
+				<string>0.5</string>
+				<string>0.25</string>
+			</array>
 			<key>Key</key>
 			<string>user_voice_instruction_rate</string>
 			<key>DefaultValue</key>
 			<real>0.5</real>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MaximumValue</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 </dict>
