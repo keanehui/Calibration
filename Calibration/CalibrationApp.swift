@@ -31,7 +31,8 @@ struct CalibrationApp: App {
             defaults: ["user_haptic_enabled": true,
                        "user_sound_enabled": true,
                        "user_voice_instruction_enabled": false,
-                       "user_voice_instruction_rate": 0.5])
+                       "user_voice_instruction_rate": 0.5,
+                       "user_voice_instruction_pitch": 1.0])
     }
     
 }
@@ -100,7 +101,8 @@ func updateManagerSettings() {
     SoundManager.shared.enabled = userDefaults.bool(forKey: "user_sound_enabled")
     T2SManager.shared.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
     T2SManager.shared.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
-    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!)")
+    T2SManager.shared.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
+    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!) \(T2SManager.shared.pitchMultiplier!)")
 }
 
 enum DistanceStatus: String {

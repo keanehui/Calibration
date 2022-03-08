@@ -15,11 +15,13 @@ class T2SManager {
     var synthesizer: AVSpeechSynthesizer?
     var utterance: AVSpeechUtterance?
     var rate: Float?
+    var pitchMultiplier: Float?
     
     init() {
         let userDefaults = UserDefaults.standard
         self.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
         self.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
+        self.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -38,6 +40,7 @@ class T2SManager {
             self.utterance = AVSpeechUtterance(string: sentence)
             self.utterance!.voice = AVSpeechSynthesisVoice(language: "en-UK")
             self.utterance!.rate = self.rate!
+            self.utterance!.pitchMultiplier = self.pitchMultiplier!
             self.synthesizer?.stopSpeaking(at: .immediate)
             self.synthesizer = AVSpeechSynthesizer()
             self.synthesizer!.speak(self.utterance!)
