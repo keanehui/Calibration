@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct HomePageView: View {
+    let vi: String = "Press 'Start Test' to proceed. "
     
     var body: some View {
         VStack(spacing: 30) {
@@ -24,7 +25,7 @@ struct HomePageView: View {
                 Text("Settings")
             }
             Button {
-                T2SManager.shared.speakSentence(sentence: "This is the homepage of Calibration app. ")
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
             } label: {
                 Text("Play")
             }

@@ -20,15 +20,17 @@ struct CalibrationPreIntro: View {
                 Image(systemName: "iphone").foregroundColor(.gray)
             }
             .font(.system(size: 70))
-            Text("iPhone needs to know the distance between the screen and your face to conduct the test. \n\nLet's start with a simple calibration. ")
+            Text("iPhone needs to know the distance between the screen and your face before the eye tests by doing a simple calibration. ")
                 .multilineTextAlignment(.center)
                 .font(.title3)
                 .padding(.top)
             Spacer()
+            Text("Continue to the calibration? ")
+                .font(.title3)
             Button {
                 isPresenting = true
             } label: {
-                Text("Get started")
+                Text("Yes")
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -39,7 +41,7 @@ struct CalibrationPreIntro: View {
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("Not now")
+                Text("No")
                     .padding(.top, 5)
             }
         }

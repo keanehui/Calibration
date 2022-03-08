@@ -109,7 +109,7 @@ struct CalibrationInstructionView: View {
                     .padding(.top)
             }
             if (distanceStatus == .valid) {
-                Text("Please maintain this distance during the test. ")
+                Text("Please maintain this distance during the tests. ")
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .padding(.top)

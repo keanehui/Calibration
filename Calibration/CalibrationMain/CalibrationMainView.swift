@@ -68,6 +68,20 @@ struct CalibrationMainView: View {
             if newValue == .valid {
                 SoundManager.shared.playSound(filename: "pop.mp3")
             }
+            switch newValue {
+            case .missing:
+                let vi: String = "Please show your face in front of the camera. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .tooClose:
+                let vi: String = "Your iPhone is too close! Move it away. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .valid:
+                let vi: String = "Perfect! Please maintain this distance during the tests"
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            case .tooFar:
+                let vi: String = "Your iPhone is too far away! Move it closer. "
+                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            }
         }
         .overlay(alignment: .topLeading, content: {
             Button {

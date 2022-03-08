@@ -30,16 +30,22 @@ class T2SManager {
         }
     }
     
-    func speakSentence(sentence: String) {
+    func speakSentence(_ sentence: String, delay: Double = 1.0) {
         if !enabled {
             return
         }
-        self.utterance = AVSpeechUtterance(string: sentence)
-        self.utterance!.voice = AVSpeechSynthesisVoice(language: "en-UK")
-        self.utterance!.rate = self.rate!
-        self.synthesizer?.stopSpeaking(at: .immediate)
-        self.synthesizer = AVSpeechSynthesizer()
-        self.synthesizer!.speak(self.utterance!)
+        DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
+            self.utterance = AVSpeechUtterance(string: sentence)
+            self.utterance!.voice = AVSpeechSynthesisVoice(language: "en-UK")
+            self.utterance!.rate = self.rate!
+            self.synthesizer?.stopSpeaking(at: .immediate)
+            self.synthesizer = AVSpeechSynthesizer()
+            self.synthesizer!.speak(self.utterance!)
+        }
+    }
+    
+    func stopSpeaking(at boundary: AVSpeechBoundary = .immediate) {
+        self.synthesizer?.stopSpeaking(at: boundary)
     }
     
 }
