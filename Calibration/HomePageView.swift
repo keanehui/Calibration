@@ -24,7 +24,7 @@ struct HomePageView: View {
                 Text("Settings")
             }
             Button {
-                T2SManager.shared.speakSentence(sentence: "Hello! Welcome to Calibration App. ")
+                T2SManager.shared.speakSentence(sentence: "This is the homepage of Calibration app. ")
             } label: {
                 Text("Play")
             }
