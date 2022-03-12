@@ -15,8 +15,7 @@ struct CalibrationMainView: View {
     @Binding var isCalibrated: Bool
     @State private var secondsSinceValid: CGFloat = 0.0
     @State private var timerSubscription: Cancellable?
-    private let timer = Timer.publish(every: 1, on: .main, in: .common)
-    
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     private var distanceStatus: DistanceStatus {
         getDistanceStatus(distance)
@@ -58,7 +57,6 @@ struct CalibrationMainView: View {
             Spacer()
         }
         .onAppear {
-            timerDisconnect()
             HapticManager.shared.notification(type: .warning)
         }
         .onChange(of: distance) { newValue in // Haptic if distance changes
@@ -76,7 +74,7 @@ struct CalibrationMainView: View {
                 let vi: String = "Your iPhone is too close! Move it away. "
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .valid:
-                let vi: String = "Perfect! Please maintain this distance during the tests"
+                let vi: String = "Perfect! Please maintain this distance during the tests. "
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .tooFar:
                 let vi: String = "Your iPhone is too far away! Move it closer. "
@@ -101,10 +99,7 @@ struct CalibrationMainView: View {
                     .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity).animation(.easeInOut), removal: .opacity.animation(.linear(duration: 0.0))))
                     .zIndex(3.0)
                     .onAppear {
-                        timerConnect()
-                    }
-                    .onDisappear {
-                        timerDisconnect()
+                        timerReset()
                     }
                     .onReceive(timer) { _ in
                         if secondsSinceValid < 5 {
@@ -147,18 +142,9 @@ struct CalibrationMainView: View {
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    private func timerConnect() {
-        DispatchQueue.main.async {
-            secondsSinceValid = 0.0
-            timerSubscription = timer.connect()
-            print("timer connected")
-        }
-    }
-    
-    private func timerDisconnect() {
+    private func timerReset() {
         secondsSinceValid = 0.0
-        timerSubscription?.cancel()
-        timerSubscription = nil
+        print("timer is reset")
     }
 }
 
