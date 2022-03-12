@@ -16,6 +16,7 @@ struct EyeTestMainView: View {
     
     // *** distance tracking ***
     @State private var trackingEnabled: Bool = false
+    @State private var isFirstTime: Bool = true
     @State private var isTracking: Bool = true
     @State private var isPresentingSheet: Bool = false
     @State private var isPresentingAlert: Bool = false
@@ -86,8 +87,10 @@ struct EyeTestMainView: View {
                         }
                     }
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                        let delay = isFirstTime ? 1.0 : 0.0
+                        DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
                             trackingEnabled = true
+                            isFirstTime = false
                         }
                         if isCalibrated == false {
                             isPresentingAlert = true
