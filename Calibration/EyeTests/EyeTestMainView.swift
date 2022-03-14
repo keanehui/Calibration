@@ -20,7 +20,6 @@ struct EyeTestMainView: View {
     @State private var isTracking: Bool = true
     @State private var isPresentingSheet: Bool = false
     @State private var isPresentingAlert: Bool = false
-    @State private var shouldEndTest: Bool = false
     // *** distance tracking ***
     
     private var distanceStatus: DistanceStatus {
@@ -43,7 +42,7 @@ struct EyeTestMainView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
-                let vi: String = "What number do you see in the image above? "
+                let vi: String = NSLocalizedString("eyeTestQuestion", comment: "")
                 T2SManager.shared.speakSentence(vi)
             }
             .onDisappear {
@@ -69,11 +68,11 @@ struct EyeTestMainView: View {
         .overlay(alignment: .top, content: {
             DistanceCapsule(distance: $distance)
         })
-        .onChange(of: shouldEndTest, perform: { newValue in
-            if newValue == true {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        })
+//        .onChange(of: shouldEndTest, perform: { newValue in
+//            if newValue == true {
+//                self.presentationMode.wrappedValue.dismiss()
+//            }
+//        })
         .overlay {
             if isTracking {
                 CalibrationCameraView(distance: $distance)
@@ -110,20 +109,21 @@ struct EyeTestMainView: View {
                 }
         }
         .alert(
-            Text("Calibration Required"), isPresented: $isPresentingAlert
+            Text(NSLocalizedString("alertTitle", comment: "")), isPresented: $isPresentingAlert
         ) {
             Button(role: .cancel) {
-                shouldEndTest.toggle()
+                isCalibrated = false
+                self.presentationMode.wrappedValue.dismiss()
             } label: {
-                Text("End test")
+                Text(NSLocalizedString("alertButton1", comment: ""))
             }
             Button() {
                 isPresentingSheet = true
             } label: {
-                Text("Calibrate")
+                Text(NSLocalizedString("alertButton2", comment: ""))
             }
         } message: {
-            Text("You are not within the appropriate distance from your iPhone's screen. Complete another calibration to continue. ")
+            Text(NSLocalizedString("alertText", comment: ""))
         }
     }
 }

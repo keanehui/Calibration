@@ -1,0 +1,93 @@
+/*
+  Localizable.strings
+  Calibration
+
+  Created by Keane Hui on 13/3/2022.
+  
+*/
+
+// Copy to zh-Hant-HK, zh-Hant-TW
+
+// MARK: Distance Capsule
+"distanceCapsuleText" = "距離";
+
+// MARK: Home
+"homePageText" = "首頁";
+
+"homeStartButton" = "開始";
+
+"homeSettingButton" = "設定";
+
+"homePlayButton" = "播放";
+
+"homeVI" = "請按下播放以開始。";
+
+// MARK: Pre-Introduction
+"preIntroTextTop" = "在開始眼部測試之前，您的iPhone需要透過一個簡單的校正步驟來知道螢幕和您面部之間的距離。";
+
+"turnOnVIInSetting" = "在設定中打開語音指示 > ";
+
+"preIntroTextBottom" = "是否要進行校正？";
+
+"preIntroButtonTop" = "是";
+
+"preIntroButtonBottom" = "否";
+
+"preIntroVI" = "在開始眼部測試之前，您的iPhone需要透過一個簡單的校正步驟來知道螢幕和您面部之間的距離。是否要進行校正？";
+
+// MARK: Calibration - Main
+"calibrationMissingVI" = "請將面部置於前置鏡頭面前。";
+
+"calibrationTooCloseVI" = "距離太近了！請把iPhone拿遠一些。";
+
+"calibrationValidVI" = "很好！請在測試中保持這個距離。";
+
+"calibrationTooFarVI" = "距離太遠了！請把iPhone拿近一些。";
+
+"calibrationButtonCancel" = "取消";
+
+"volumeTooLowText" = "請調高音量";
+
+// MARK: Calibration - Instruction Short
+"instructionShortMissing" = "請將面部置於\n前置鏡頭面前";
+
+"instructionShortTooClose1" = "太近了";
+"instructionShortTooClose2" = "快到了，再遠一些！";
+
+"instructionShortTooFar1" = "太遠了";
+"instructionShortTooFar2" = "快到了，再近一些！";
+
+// MARK: Calibration - Instruction Full
+"instructionFullMissing1" = "請將面部置於";
+"instructionFullMissing2" = "正方形";
+"instructionFullMissing3" = "裡面。";
+
+"instructionFullTooClose" = "請把iPhone拿遠一些。";
+
+"instructionFullValid" = "很好！請在測試中保持這個距離。";
+
+"instructionFullTooFar" = "請把iPhone拿近一些。";
+
+// MARK: Post-Introduction
+"postIntroTextTop" = "做得好！您的iPhone已經知道螢幕和您面部之間的距離了。請在整個測試過程中保持這個距離。前置鏡頭將會在整個測試過程中持續監察距離，並在距離太近或太遠時提醒您。";
+
+"postIntroTextBottom" = "是否要進行測試？";
+
+"postIntroButtonTop" = "是";
+
+"postIntroButtonBottom" = "否";
+
+"postIntroVI" = "做得好！您的iPhone已經知道螢幕和您面部之間的距離了。請在整個測試過程中保持這個距離。前置鏡頭將會在整個測試過程中持續監察距離，並在距離太近或太遠時提醒您。是否要進行測試？";
+
+// MARK: Alert
+"alertTitle" = "需要校正";
+
+"alertButton1" = "結束";
+
+"alertButton2" = "校正";
+
+"alertText" = "您與iPhone之間的距離太近或太遠了。如果要繼續進行測試，請先完成校正。";
+
+// MARK: Eye Test
+"eyeTestQuestion" = "上方圖片中的數字是什麼？";
+"eyeTestPlaceHolder" = "請在這裡輸入您看到的數字";

@@ -18,7 +18,7 @@ struct EyeTestQuestion: View {
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
-                Text("What number do you see in the image above?")
+                Text(NSLocalizedString("eyeTestQuestion", comment: ""))
                     .font(.system(size: 25, weight: .bold, design: .rounded))
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
@@ -27,7 +27,7 @@ struct EyeTestQuestion: View {
             .onTapGesture {
                 isFocused = false
             }
-            TextField("Enter a number here", text: $text)
+            TextField(NSLocalizedString("eyeTestPlaceHolder", comment: ""), text: $text)
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .keyboardType(.numberPad)
                 .focused($isFocused)

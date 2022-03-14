@@ -36,7 +36,7 @@ struct CalibrationInstructionView: View {
     private var instructionShortView: some View {
         Group {
             if (distanceStatus == .missing) {
-                Text("Show your face")
+                Text(NSLocalizedString("instructionShortMissing", comment: ""))
                     .makeInstructionShort()
                     .transition(opacityInTransition)
                     .onAppear {
@@ -46,10 +46,10 @@ struct CalibrationInstructionView: View {
             if (distanceStatus == .tooClose) {
                 Group {
                     if isDeltaSmall {
-                        Text("Just a bit further")
+                        Text(NSLocalizedString("instructionShortTooClose2", comment: ""))
                             .makeInstructionShort()
                     } else {
-                        Text("Too close")
+                        Text(NSLocalizedString("instructionShortTooClose1", comment: ""))
                             .makeInstructionShort()
                             .scaleEffect(scaled ? 2 : 1)
                             .onAppear {
@@ -77,10 +77,10 @@ struct CalibrationInstructionView: View {
             if (distanceStatus == .tooFar) {
                 Group {
                     if isDeltaSmall {
-                        Text("Just a bit closer")
+                        Text(NSLocalizedString("instructionShortTooFar2", comment: ""))
                             .makeInstructionShort()
                     } else {
-                        Text("Too far")
+                        Text(NSLocalizedString("instructionShortTooFar1", comment: ""))
                             .makeInstructionShort()
                             .scaleEffect(scaled ? 0.5 : 1)
                             .onAppear {
@@ -97,25 +97,25 @@ struct CalibrationInstructionView: View {
     private var instructionFullView: some View {
         Group {
             if (distanceStatus == .missing) {
-                (Text("Please show your face in the ") +
-                 Text("square").foregroundColor(.blue) +
-                 Text(". "))
+                (Text(NSLocalizedString("instructionFullMissing1", comment: "")) +
+                 Text(NSLocalizedString("instructionFullMissing2", comment: "")).foregroundColor(.blue) +
+                 Text(NSLocalizedString("instructionFullMissing3", comment: "")))
                     .makeInstructionFull()
                     .padding(.top)
             }
             if (distanceStatus == .tooClose) {
-                Text("Your phone is too close from your face. \nPlease move your iPhone away. ")
+                Text(NSLocalizedString("instructionFullTooClose", comment: ""))
                     .makeInstructionFull()
                     .padding(.top)
             }
             if (distanceStatus == .valid) {
-                Text("Please maintain this distance during the tests. ")
+                Text(NSLocalizedString("instructionFullValid", comment: ""))
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .padding(.top)
             }
             if (distanceStatus == .tooFar) {
-                Text("Your phone is too far away from your face. \nPlease move your iPhone closer. ")
+                Text(NSLocalizedString("instructionFullTooFar", comment: ""))
                     .makeInstructionFull()
                     .padding(.top)
             }
@@ -152,7 +152,6 @@ extension Text {
         self.fontWeight(Font.Weight.bold)
             .font(.largeTitle)
             .multilineTextAlignment(.center)
-            .lineLimit(1)
     }
     
     func makeInstructionFull() -> some View {
@@ -163,6 +162,6 @@ extension Text {
 
 struct CalibrationInstructionView_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationInstructionView(distance: .constant(40))
+        CalibrationInstructionView(distance: .constant(0))
     }
 }

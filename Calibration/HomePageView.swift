@@ -9,31 +9,32 @@ import SwiftUI
 import AVFoundation
 
 struct HomePageView: View {
-    let vi: String = "Press 'Start Test' to proceed. "
+    let vi: String = NSLocalizedString("homeVI", comment: "")
     
     var body: some View {
         VStack(spacing: 30) {
-            Text("Home Page")
+            Text(NSLocalizedString("homePageText", comment: ""))
                 .font(.largeTitle)
                 .fontWeight(.bold)
             NavigationLink(destination: CalibrationIntroView()) {
-                Text("Start Test")
+                Text(NSLocalizedString("homeStartButton", comment: ""))
             }
             Button {
                 openSetting()
             } label: {
-                Text("Settings")
+                Text(NSLocalizedString("homeSettingButton", comment: ""))
             }
             Button {
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             } label: {
-                Text("Play")
+                Text(NSLocalizedString("homePlayButton", comment: ""))
             }
         }
         .padding()
-        .onAppear {
-            
-        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .top, content: {
+            Text(Bundle.main.preferredLocalizations.first!)
+        })
     }
     
 }

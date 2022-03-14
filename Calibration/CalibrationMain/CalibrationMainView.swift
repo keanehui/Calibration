@@ -54,6 +54,13 @@ struct CalibrationMainView: View {
                         HapticManager.shared.impact(style: .heavy)
                     }
                 }
+                .onAppear {
+                    let vi = NSLocalizedString("calibrationMissingVI", comment: "")
+                    T2SManager.shared.speakSentence(vi, delay: 0.0)
+                }
+                .onDisappear {
+                    T2SManager.shared.stopSpeaking()
+                }
             Spacer()
         }
         .onAppear {
@@ -68,16 +75,16 @@ struct CalibrationMainView: View {
             }
             switch newValue {
             case .missing:
-                let vi: String = "Please show your face in front of the camera. "
+                let vi = NSLocalizedString("calibrationMissingVI", comment: "")
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .tooClose:
-                let vi: String = "Your iPhone is too close! Move it away. "
+                let vi = NSLocalizedString("calibrationTooCloseVI", comment: "")
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .valid:
-                let vi: String = "Perfect! Please maintain this distance during the tests. "
+                let vi = NSLocalizedString("calibrationValidVI", comment: "")
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .tooFar:
-                let vi: String = "Your iPhone is too far away! Move it closer. "
+                let vi: String = NSLocalizedString("calibrationTooFarVI", comment: "")
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             }
         }
@@ -86,7 +93,7 @@ struct CalibrationMainView: View {
                 isCalibrated = false
                 self.presentationMode.wrappedValue.dismiss()
             } label: {
-                Text("Cancel")
+                Text(NSLocalizedString("calibrationButtonCancel", comment: ""))
                     .foregroundColor(.red)
             }
 
@@ -125,7 +132,7 @@ struct CalibrationMainView: View {
                     .fill(.teal)
                 RoundedRectangle(cornerRadius: 0, style: .circular)
                     .fill(.blue)
-                    .animation(.linear(duration: 1), value: secondsSinceValid)
+                    .animation(.linear(duration: 1.0), value: secondsSinceValid)
                     .frame(width: secondsSinceValid/5.0 * geometry.size.width)
                 Text("Done")
                     .fontWeight(.bold)

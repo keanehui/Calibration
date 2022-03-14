@@ -16,12 +16,14 @@ class T2SManager {
     var utterance: AVSpeechUtterance?
     var rate: Float?
     var pitchMultiplier: Float?
+    var voice: AVSpeechSynthesisVoice?
     
     init() {
         let userDefaults = UserDefaults.standard
         self.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
         self.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
         self.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
+        self.voice = getVoice()
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -38,9 +40,9 @@ class T2SManager {
         }
         DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
             self.utterance = AVSpeechUtterance(string: sentence)
-            self.utterance!.voice = AVSpeechSynthesisVoice(language: "en-UK")
             self.utterance!.rate = self.rate!
             self.utterance!.pitchMultiplier = self.pitchMultiplier!
+            self.utterance?.voice = self.voice!
             self.synthesizer?.stopSpeaking(at: .immediate)
             self.synthesizer = AVSpeechSynthesizer()
             self.synthesizer!.speak(self.utterance!)
@@ -50,5 +52,26 @@ class T2SManager {
     func stopSpeaking(at boundary: AVSpeechBoundary = .immediate) {
         self.synthesizer?.stopSpeaking(at: boundary)
     }
+    
+    private func getVoice() -> AVSpeechSynthesisVoice {
+        let language_id: String? = Bundle.main.preferredLocalizations.first
+        var id: String = ""
+        switch language_id {
+        case "en-GB":
+            id = "com.apple.ttsbundle.siri_Martha_en-GB_compact"
+        case "en-US", "en":
+            id = AVSpeechSynthesisVoiceIdentifierAlex
+        case "zh-Hant-HK":
+            id = "com.apple.ttsbundle.Sin-Ji-compact"
+        case "zh-Hant-TW", "zh-Hant":
+            id = "com.apple.ttsbundle.Mei-Jia-compact"
+        case "zh-Hans-CN", "zh-Hans":
+            id = "com.apple.ttsbundle.Ting-Ting-compact"
+        default:
+            id = AVSpeechSynthesisVoiceIdentifierAlex
+        }
+        return AVSpeechSynthesisVoice(identifier: id)!
+    }
+    
     
 }

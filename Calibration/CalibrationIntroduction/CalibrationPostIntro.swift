@@ -24,16 +24,16 @@ struct CalibrationPostIntro: View {
                     }
             }
             .font(.system(size: 70))
-            Text("iPhone now knows the distance between the screen and your face. Please maintain the distance during the whole test. \n\nThe camera will be tracking the distance and you will be notified if you are too close or too far away from the screen. ")
+            Text(NSLocalizedString("postIntroTextTop", comment: ""))
                 .multilineTextAlignment(.center)
                 .font(.title3)
                 .padding(.top)
             Spacer()
-            Text("Continue to the eye tests? ")
+            Text(NSLocalizedString("postIntroTextBottom", comment: ""))
                 .font(.title3)
                 .multilineTextAlignment(.center)
             NavigationLink(destination: EyeTestMainView(distance: $distance, isCalibrated: $isCalibrated)) {
-                Text("Yes")
+                Text(NSLocalizedString("postIntroButtonTop", comment: ""))
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -44,7 +44,7 @@ struct CalibrationPostIntro: View {
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("No")
+                Text(NSLocalizedString("postIntroButtonBottom", comment: ""))
                     .padding(.top, 5)
             }
         }

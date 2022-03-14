@@ -1,0 +1,83 @@
+/*
+  Localizable.strings
+  Calibration
+
+  Created by Keane Hui on 13/3/2022.
+  
+*/
+
+// MARK: Distance Capsule
+"distanceCapsuleText" = "距离";
+
+// MARK: Home
+"homePageText" = "首页";
+
+"homeStartButton" = "开始";
+
+"homeSettingButton" = "设定";
+
+"homePlayButton" = "播放";
+
+"homeVI" = "请按下播放以开始。";
+
+// MARK: Pre-Introduction
+"preIntroTextTop" = "在开始眼部测试之前，您的iPhone需要透过一个简单的校正步骤来知道萤幕和您面部之间的距离。";
+
+"turnOnVIInSetting" = "在设定中打开语音指示 > ";
+
+"preIntroTextBottom" = "是否要进行校正？";
+
+"preIntroButtonTop" = "是";
+
+"preIntroButtonBottom" = "否";
+
+"preIntroVI" = "在开始眼部测试之前，您的iPhone需要透过一个简单的校正步骤来知道萤幕和您面部之间的距离。是否要进行校正？";
+
+// MARK: Calibration - Main
+"calibrationMissingVI" = "请将面部置于前置镜头面前。";
+
+"calibrationTooCloseVI" = "距离太近了！请把iPhone拿远一些。";
+
+"calibrationValidVI" = "很好！请在测试中保持这个距离。";
+
+"calibrationTooFarVI" = "距离太远了！请把iPhone拿近一些。";
+
+"calibrationButtonCancel" = "取消";
+
+"volumeTooLowText" = "请调高音量";
+
+// MARK: Calibration - Instruction Short
+"instructionShortMissing" = "请将面部置于\n前置镜头面前";
+
+"instructionShortTooClose1" = "太近了";
+"instructionShortTooClose2" = "快到了，再远一些！";
+
+"instructionShortTooFar1" = "太远了";
+"instructionShortTooFar2" = "快到了，再近一些！";
+
+// MARK: Calibration - Instruction Full
+"instructionFullMissing1" = "请将面部置于";
+"instructionFullMissing2" = "正方形";
+"instructionFullMissing3" = "里面。";
+
+"instructionFullTooClose" = "请把iPhone拿远一些。";
+
+"instructionFullValid" = "很好！请在测试中保持这个距离。";
+
+"instructionFullTooFar" = "请把iPhone拿近一些。";
+
+// MARK: Post-Introduction
+"postIntroTextTop" = "做得好！您的iPhone已经知道萤幕和您面部之间的距离了。\n请在整个测试过程中保持这个距离。\n前置镜头将会在整个测试过程中持续监察距离，并在距离太近或太远时提醒您。";
+
+"postIntroTextBottom" = "是否要进行测试？";
+
+"postIntroButtonTop" = "是";
+
+"postIntroButtonBottom" = "否";
+
+"postIntroVI" = "做得好！您的iPhone已经知道萤幕和您面部之间的距离了。请在整个测试过程中保持这个距离。前置镜头将会在整个测试过程中持续监察距离，并在距离太近或太远时提醒您。是否要进行测试？";
+
+// MARK: Eye Test
+"eyeTestQuestion" = "上方图片中的数字是什么？";
+"eyeTestPlaceHolder" = "请在这里输入您看到的数字";
+

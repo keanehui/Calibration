@@ -102,7 +102,7 @@ func fetchSettings() {
     T2SManager.shared.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
     T2SManager.shared.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
     T2SManager.shared.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
-    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!) \(T2SManager.shared.pitchMultiplier!)")
+    print("\(HapticManager.shared.enabled) \(SoundManager.shared.enabled) \(T2SManager.shared.enabled) \(T2SManager.shared.rate!) \(T2SManager.shared.pitchMultiplier!) \(Bundle.main.preferredLocalizations.first!)")
 }
 
 enum DistanceStatus: String {

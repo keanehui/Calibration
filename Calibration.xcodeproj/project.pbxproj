@@ -16,12 +16,14 @@
 		073B12A127AD0BAB00BAAF9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A027AD0BAB00BAAF9D /* Assets.xcassets */; };
 		073B12A427AD0BAB00BAAF9D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */; };
 		073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */; };
+		074AE1D727DF849300BE4EC7 /* VolumeTooLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074AE1D627DF849300BE4EC7 /* VolumeTooLow.swift */; };
 		075A270B27CE46B1003C2052 /* SettingsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A270A27CE46B1003C2052 /* SettingsTest.swift */; };
 		075A270D27CE51D9003C2052 /* EyeTest2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A270C27CE51D9003C2052 /* EyeTest2View.swift */; };
 		07649CCC27C8D2160039148D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649CCB27C8D2160039148D /* HapticManager.swift */; };
 		07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649CCD27C8D30C0039148D /* HapticTest.swift */; };
 		07846F0827C62FE60077517A /* CalibrationInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07846F0727C62FE60077517A /* CalibrationInstructionView.swift */; };
 		07846F0A27C6301B0077517A /* CalibrationCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07846F0927C6301B0077517A /* CalibrationCameraView.swift */; };
+		078C964B27DDFD7D00338FD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 078C964D27DDFD7D00338FD1 /* Localizable.strings */; };
 		0796CC2227C23442004F53A6 /* ARKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0796CC2127C23442004F53A6 /* ARKitView.swift */; };
 		079EB88627CCC9C100B683E1 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88527CCC9C100B683E1 /* HomePageView.swift */; };
 		079EB88827CCDDFD00B683E1 /* CalibrationPostIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */; };
@@ -46,12 +48,21 @@
 		073B12A027AD0BAB00BAAF9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationMainView.swift; sourceTree = "<group>"; };
+		074AE1D627DF849300BE4EC7 /* VolumeTooLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTooLow.swift; sourceTree = "<group>"; };
 		075A270A27CE46B1003C2052 /* SettingsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTest.swift; sourceTree = "<group>"; };
 		075A270C27CE51D9003C2052 /* EyeTest2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTest2View.swift; sourceTree = "<group>"; };
 		07649CCB27C8D2160039148D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		07649CCD27C8D30C0039148D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
 		07846F0727C62FE60077517A /* CalibrationInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationInstructionView.swift; sourceTree = "<group>"; };
 		07846F0927C6301B0077517A /* CalibrationCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationCameraView.swift; sourceTree = "<group>"; };
+		078C964C27DDFD7D00338FD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		078C964E27DDFD7E00338FD1 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C964F27DDFD7E00338FD1 /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C965027DDFD8000338FD1 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C965127DE1A0800338FD1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C965227DE1A1D00338FD1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C965327DE1AE000338FD1 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		078C965427DE1B0C00338FD1 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0796CC2127C23442004F53A6 /* ARKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitView.swift; sourceTree = "<group>"; };
 		079EB88527CCC9C100B683E1 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPostIntro.swift; sourceTree = "<group>"; };
@@ -91,6 +102,7 @@
 		073B129027AD0BAB00BAAF9D = {
 			isa = PBXGroup;
 			children = (
+				078C964D27DDFD7D00338FD1 /* Localizable.strings */,
 				07A0385927D504AD00614314 /* Settings.bundle */,
 				073B129B27AD0BAB00BAAF9D /* Calibration */,
 				073B129A27AD0BAB00BAAF9D /* Products */,
@@ -141,6 +153,7 @@
 				073B129E27AD0BAB00BAAF9D /* CalibrationIntroView.swift */,
 				079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */,
 				079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */,
+				074AE1D627DF849300BE4EC7 /* VolumeTooLow.swift */,
 			);
 			path = CalibrationIntroduction;
 			sourceTree = "<group>";
@@ -223,6 +236,14 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans-CN",
+				"zh-Hant-TW",
+				"zh-HK",
+				"zh-Hant-HK",
+				"zh-Hant",
+				"zh-Hans",
+				"en-GB",
+				"en-US",
 			);
 			mainGroup = 073B129027AD0BAB00BAAF9D;
 			productRefGroup = 073B129A27AD0BAB00BAAF9D /* Products */;
@@ -240,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C4A04027D614E500EF7767 /* silence.mp3 in Resources */,
+				078C964B27DDFD7D00338FD1 /* Localizable.strings in Resources */,
 				07A0385A27D504AD00614314 /* Settings.bundle in Resources */,
 				072C7A5B27CB6A6E005F8185 /* pop.mp3 in Resources */,
 				073B12A427AD0BAB00BAAF9D /* Preview Assets.xcassets in Resources */,
@@ -273,12 +295,31 @@
 				07B48C7827D6401A00B4926F /* T2SManager.swift in Sources */,
 				0708414027D2238000BE253C /* EyeTest3View.swift in Sources */,
 				07C4A03E27D60F4700EF7767 /* Config.swift in Sources */,
+				074AE1D727DF849300BE4EC7 /* VolumeTooLow.swift in Sources */,
 				07BE89DF27CB588B00CA2520 /* SoundManager.swift in Sources */,
 				073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		078C964D27DDFD7D00338FD1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				078C964C27DDFD7D00338FD1 /* en */,
+				078C964E27DDFD7E00338FD1 /* zh-Hans-CN */,
+				078C964F27DDFD7E00338FD1 /* zh-Hant-HK */,
+				078C965027DDFD8000338FD1 /* zh-Hant-TW */,
+				078C965127DE1A0800338FD1 /* zh-Hant */,
+				078C965227DE1A1D00338FD1 /* zh-Hans */,
+				078C965327DE1AE000338FD1 /* en-GB */,
+				078C965427DE1B0C00338FD1 /* en-US */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		073B12A527AD0BAB00BAAF9D /* Debug */ = {

@@ -6,38 +6,55 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CalibrationIntroView: View {
     @State private var distance: Int = 0
     @State private var isCalibrated: Bool = false
-    
     @State private var isPresenting: Bool = false
+    @State private var isShowingVolumeMessage: Bool = false
     
     var body: some View {
-        VStack {
+        ZStack(alignment: .center) {
             if (!isCalibrated) {
-                let vi: String = "iPhone needs to know the distance between the screen and your face before the eye tests by doing a simple calibration. Do you want to continue to the calibration? "
                 CalibrationPreIntro(isPresenting: $isPresenting)
-                    .onAppear {
-                        T2SManager.shared.speakSentence(vi)
-                    }
-                    .onDisappear {
-                        T2SManager.shared.stopSpeaking()
-                    }
             } else {
-                let vi: String = "iPhone now knows the distance between the screen and your face. Please maintain the distance during the whole test. \n\nThe camera will be tracking the distance and you will be notified if you are too close or too far away from the screen. Do you want to continue to the eye tests? "
                 CalibrationPostIntro(distance: $distance, isCalibrated: $isCalibrated)
-                    .onAppear {
-                        T2SManager.shared.speakSentence(vi)
-                    }
-                    .onDisappear {
-                        T2SManager.shared.stopSpeaking()
-                    }
+            }
+            if isShowingVolumeMessage {
+                VolumeTooLow()
+                    .offset(x: 0.0, y: -50.0)
+                    .transition(.opacity.animation(.easeInOut(duration: 0.5)))
             }
         }
         .padding()
         .navigationTitle("Calibration")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            let vol = AVAudioSession.sharedInstance().outputVolume
+            if vol == 0.0 {
+                HapticManager.shared.notification(type: .warning)
+                withAnimation {
+                    isShowingVolumeMessage = true
+                    DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                        isShowingVolumeMessage = false
+                    }
+                }
+            }
+            var vi: String = ""
+            let delay = isShowingVolumeMessage ? 3.0 : 0.0
+            if !isCalibrated {
+                vi = NSLocalizedString("preIntroVI", comment: "")
+            } else {
+                vi = NSLocalizedString("postIntroVI", comment: "")
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
+                T2SManager.shared.speakSentence(vi)
+            }
+        }
+        .onDisappear {
+            T2SManager.shared.stopSpeaking()
+        }
         .sheet(isPresented: $isPresenting) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
         }
