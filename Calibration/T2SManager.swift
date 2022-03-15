@@ -23,7 +23,7 @@ class T2SManager {
         self.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
         self.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
         self.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
-        self.voice = getVoice()
+        self.voice = AVSpeechSynthesisVoice(identifier: getVoiceId())
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -42,7 +42,7 @@ class T2SManager {
             self.utterance = AVSpeechUtterance(string: sentence)
             self.utterance!.rate = self.rate!
             self.utterance!.pitchMultiplier = self.pitchMultiplier!
-            self.utterance?.voice = self.voice!
+            self.utterance!.voice = self.voice!
             self.synthesizer?.stopSpeaking(at: .immediate)
             self.synthesizer = AVSpeechSynthesizer()
             self.synthesizer!.speak(self.utterance!)
@@ -53,7 +53,7 @@ class T2SManager {
         self.synthesizer?.stopSpeaking(at: boundary)
     }
     
-    private func getVoice() -> AVSpeechSynthesisVoice {
+    private func getVoiceId() -> String {
         let language_id: String? = Bundle.main.preferredLocalizations.first
         var id: String = ""
         switch language_id {
@@ -70,7 +70,7 @@ class T2SManager {
         default:
             id = AVSpeechSynthesisVoiceIdentifierAlex
         }
-        return AVSpeechSynthesisVoice(identifier: id)!
+        return id
     }
     
     
