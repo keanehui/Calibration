@@ -71,7 +71,7 @@
 // MARK: Post-Introduction
 "postIntroTextTop" = "Well done! iPhone now knows the distance between the screen and your face. Please maintain the distance during the whole test. \n\nThe camera will be tracking the distance and you will be notified if you are too close or too far away from the screen. ";
 
-"postIntroTextBottom" = "Continue to the eye tests? ";
+"postIntroTextBottom" = "Continue to eye tests? ";
 
 "postIntroButtonTop" = "Yes";
 
