@@ -30,6 +30,7 @@ struct CalibrationPreIntro: View {
             } label: {
                 Text(NSLocalizedString("turnOnVIInSetting", comment: ""))
             }
+            .disabled(T2SManager.shared.enabled)
             Spacer()
             Text(NSLocalizedString("preIntroTextBottom", comment: ""))
                 .font(.title3)

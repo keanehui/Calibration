@@ -11,8 +11,8 @@ struct VolumeTooLow: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15, style: .circular)
-                .foregroundColor(.orange)
-                .background(.ultraThinMaterial)
+                .fill(.bar)
+                .background(Material.ultraThinMaterial)
             VStack(spacing: 0) {
                 Image(systemName: "speaker.slash.fill")
                     .font(.system(size: 80, design: .rounded))
@@ -21,7 +21,8 @@ struct VolumeTooLow: View {
                     .fontWeight(.bold)
                     .padding()
             }
-            .foregroundColor(.white)
+            .foregroundColor(.gray)
+            .drawingGroup()
         }
         .frame(width: 180, height: 180)
         .cornerRadius(15)

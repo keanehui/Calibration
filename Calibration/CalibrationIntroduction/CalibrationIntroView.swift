@@ -24,39 +24,46 @@ struct CalibrationIntroView: View {
             if isShowingVolumeMessage {
                 VolumeTooLow()
                     .offset(x: 0.0, y: -50.0)
-                    .transition(.opacity.animation(.easeInOut(duration: 0.5)))
+                    .transition(.opacity.animation(.easeInOut(duration: 0.3)))
             }
         }
         .padding()
         .navigationTitle("Calibration")
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: isCalibrated) { newValue in
+            speak()
+        }
         .onAppear {
-            let vol = AVAudioSession.sharedInstance().outputVolume
-            if vol == 0.0 {
-                HapticManager.shared.notification(type: .warning)
-                withAnimation {
-                    isShowingVolumeMessage = true
-                    DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
-                        isShowingVolumeMessage = false
-                    }
-                }
-            }
-            var vi: String = ""
-            let delay = isShowingVolumeMessage ? 3.0 : 0.0
-            if !isCalibrated {
-                vi = NSLocalizedString("preIntroVI", comment: "")
-            } else {
-                vi = NSLocalizedString("postIntroVI", comment: "")
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
-                T2SManager.shared.speakSentence(vi)
-            }
+            speak()
         }
         .onDisappear {
             T2SManager.shared.stopSpeaking()
         }
         .sheet(isPresented: $isPresenting) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
+        }
+    }
+    
+    private func speak() {
+        let vol = AVAudioSession.sharedInstance().outputVolume
+        if T2SManager.shared.enabled && vol == 0.0 {
+            HapticManager.shared.notification(type: .warning)
+            isShowingVolumeMessage = true
+            withAnimation {
+                DispatchQueue.main.asyncAfter(deadline: .now()+3.0) {
+                    isShowingVolumeMessage = false
+                }
+            }
+        }
+        var vi: String = ""
+        let delay = isShowingVolumeMessage ? 3.0 : 0.0
+        if !isCalibrated {
+            vi = NSLocalizedString("preIntroVI", comment: "")
+        } else {
+            vi = NSLocalizedString("postIntroVI", comment: "")
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
+            T2SManager.shared.speakSentence(vi)
         }
     }
 }
