@@ -49,6 +49,7 @@ struct CalibrationPostIntro: View {
                     .cornerRadius(10)
             }
             Button(action: {
+                isCalibrated = false
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text(NSLocalizedString("postIntroButtonBottom", comment: ""))

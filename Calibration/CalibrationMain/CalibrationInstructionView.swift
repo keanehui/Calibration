@@ -25,8 +25,8 @@ struct CalibrationInstructionView: View {
         VStack {
             instructionShortView
             instructionFullView
-                .drawingGroup()
         }
+        .frame(maxWidth: .infinity)
     }
     
     let opacityInTransition: AnyTransition = AnyTransition.asymmetric(insertion: .opacity.animation(.linear(duration: 0.3)), removal: .opacity.animation(.linear(duration: 0.0)))
@@ -61,7 +61,7 @@ struct CalibrationInstructionView: View {
             }
             if (distanceStatus == .valid) {
                 Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 70, weight: .regular, design: .rounded))
+                    .font(.system(size: 55, weight: .regular, design: .rounded))
                     .foregroundColor(.green)
                     .scaleEffect(scaled ? 1.2 : 1)
                     .transition(opacityInTransition)
@@ -162,6 +162,6 @@ extension Text {
 
 struct CalibrationInstructionView_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationInstructionView(distance: .constant(0))
+        CalibrationInstructionView(distance: .constant(40))
     }
 }

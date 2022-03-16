@@ -64,7 +64,7 @@
 
 "instructionFullTooClose" = "Your phone is too close from your face. \nPlease move your iPhone away. ";
 
-"instructionFullValid" = "Good! Please maintain this distance during the tests. ";
+"instructionFullValid" = "Good! \nMaintain this distance during the tests. ";
 
 "instructionFullTooFar" = "Your phone is too far away from your face. \nPlease move your iPhone closer. ";
 

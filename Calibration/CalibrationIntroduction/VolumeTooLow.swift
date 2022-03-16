@@ -22,7 +22,6 @@ struct VolumeTooLow: View {
                     .padding()
             }
             .foregroundColor(.gray)
-            .drawingGroup()
         }
         .frame(width: 180, height: 180)
         .cornerRadius(15)

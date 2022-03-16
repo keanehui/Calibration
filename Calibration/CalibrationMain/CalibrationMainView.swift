@@ -27,15 +27,12 @@ struct CalibrationMainView: View {
     
     var body: some View {
         VStack {
-            Capsule()
-                .fill(Color.secondary)
-                .frame(width: 50, height: 6)
             CalibrationCameraView(distance: $distance)
                 .overlay(alignment: .top, content: {
                     DistanceCapsule(distance: $distance)
                 })
                 .padding([.leading, .trailing])
-                .padding(.top, 30)
+                .padding(.top, 40)
                 .onAppear { // disable auto lock
                     UIApplication.shared.isIdleTimerDisabled = true
                 }
@@ -44,7 +41,6 @@ struct CalibrationMainView: View {
                 }
             Spacer()
             CalibrationInstructionView(distance: $distance)
-                .offset(x: 0, y: distanceStatus == .valid ? -30 : 0)
                 .onChange(of: distanceStatus) { newValue in // Haptic
                     isCalibrated = false
                     if newValue == .missing {
@@ -62,7 +58,45 @@ struct CalibrationMainView: View {
                     T2SManager.shared.stopSpeaking()
                 }
             Spacer()
+            if distanceStatus == .valid {
+                TimedButton
+                    .cornerRadius(15)
+                    .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity).animation(.easeInOut), removal: .opacity.animation(.linear(duration: 0.0))))
+                    .zIndex(3.0)
+                    .frame(maxWidth: .infinity, maxHeight: 50, alignment: .bottom)
+                    .onAppear {
+                        timerReset()
+                    }
+                    .onReceive(timer) { _ in
+                        if secondsSinceValid < 5 {
+                            withAnimation {
+                                secondsSinceValid += 1
+                            }
+                        } else {
+                            calibrationSuccess()
+                        }
+                    }
+                    .onTapGesture {
+                        calibrationSuccess()
+                    }
+            }
         }
+        .overlay(alignment: .top) {
+            Capsule()
+                .fill(Color.secondary)
+                .frame(width: 50, height: 6)
+        }
+        .overlay(alignment: .topLeading, content: {
+            Button {
+                isCalibrated = false
+                self.presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text(NSLocalizedString("calibrationButtonCancel", comment: ""))
+                    .foregroundColor(.red)
+            }
+
+        })
+        .padding()
         .onAppear {
             HapticManager.shared.notification(type: .warning)
         }
@@ -88,51 +122,17 @@ struct CalibrationMainView: View {
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             }
         }
-        .overlay(alignment: .topLeading, content: {
-            Button {
-                isCalibrated = false
-                self.presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text(NSLocalizedString("calibrationButtonCancel", comment: ""))
-                    .foregroundColor(.red)
-            }
-
-        })
-        .overlay(alignment: .bottom) { // TimedButton
-            if distanceStatus == .valid {
-                TimedButton
-                    .frame(maxWidth: .infinity, maxHeight: 50)
-                    .cornerRadius(15)
-                    .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity).animation(.easeInOut), removal: .opacity.animation(.linear(duration: 0.0))))
-                    .zIndex(3.0)
-                    .onAppear {
-                        timerReset()
-                    }
-                    .onReceive(timer) { _ in
-                        if secondsSinceValid < 5 {
-                            withAnimation {
-                                secondsSinceValid += 1
-                            }
-                        } else {
-                            calibrationSuccess()
-                        }
-                    }
-                    .onTapGesture {
-                        calibrationSuccess()
-                    }
-            }
-        }
-        .padding()
+        
     }
     
     private var TimedButton: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 0, style: .circular)
-                    .fill(.teal)
+                    .fill(.mint)
                 RoundedRectangle(cornerRadius: 0, style: .circular)
-                    .fill(.blue)
-                    .animation(.linear(duration: 1.0), value: secondsSinceValid)
+                    .fill(.teal)
+                    .animation(timeButtonAnimation, value: secondsSinceValid)
                     .frame(width: secondsSinceValid/5.0 * geometry.size.width)
                 Text("Done")
                     .fontWeight(.bold)
@@ -140,7 +140,14 @@ struct CalibrationMainView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .drawingGroup()
+    }
+    
+    private var timeButtonAnimation: Animation {
+        if secondsSinceValid == 0.0 {
+            return Animation.linear(duration: 0.0)
+        } else {
+            return Animation.linear(duration: 1.0)
+        }
     }
     
     private func calibrationSuccess() {
@@ -157,6 +164,6 @@ struct CalibrationMainView: View {
 
 struct CalibrationMainView_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationMainView(distance: .constant(0), isCalibrated: .constant(false))
+        CalibrationMainView(distance: .constant(40), isCalibrated: .constant(false))
     }
 }
