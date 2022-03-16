@@ -93,7 +93,9 @@ struct EyeTestMainView: View {
                         }
                     }
                     .overlay(alignment: .top, content: {
-                        DistanceCapsule(distance: $distance).zIndex(-1)
+                        if !isLoading {
+                            DistanceCapsule(distance: $distance)
+                        }
                     })
             }
         }

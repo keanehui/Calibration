@@ -62,7 +62,6 @@ struct CalibrationMainView: View {
                 TimedButton
                     .cornerRadius(15)
                     .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity).animation(.easeInOut), removal: .opacity.animation(.linear(duration: 0.0))))
-                    .zIndex(3.0)
                     .frame(maxWidth: .infinity, maxHeight: 50, alignment: .bottom)
                     .onAppear {
                         timerReset()
