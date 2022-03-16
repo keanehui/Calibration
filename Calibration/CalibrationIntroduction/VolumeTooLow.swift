@@ -11,7 +11,7 @@ struct VolumeTooLow: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15, style: .circular)
-                .fill(.bar)
+                .fill(.clear)
                 .background(Material.ultraThinMaterial)
             VStack(spacing: 0) {
                 Image(systemName: "speaker.slash.fill")
