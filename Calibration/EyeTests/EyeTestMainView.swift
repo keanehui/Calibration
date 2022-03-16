@@ -15,10 +15,9 @@ struct EyeTestMainView: View {
     @State private var text: String = ""
     
     // *** distance tracking ***
-    @State private var trackingEnabled: Bool = false
-    @State private var isFirstTime: Bool = true
-    @State private var isTracking: Bool = true
-    @State private var isPresentingSheet: Bool = false
+    @State private var isLoading: Bool = false
+    @State private var isTracking: Bool = false
+    @State private var isPresentingCalibration: Bool = false
     @State private var isPresentingAlert: Bool = false
     // *** distance tracking ***
     
@@ -56,6 +55,7 @@ struct EyeTestMainView: View {
                     }
                 } label: {
                     Text("Done")
+                        .fontWeight(.bold)
                         .padding()
                         .foregroundColor(.white)
                         .background(.blue)
@@ -63,49 +63,44 @@ struct EyeTestMainView: View {
                 }
             }
         }
-        
         // *** Background distance tracking below ***
-        .overlay(alignment: .top, content: {
-            DistanceCapsule(distance: $distance)
-        })
-//        .onChange(of: shouldEndTest, perform: { newValue in
-//            if newValue == true {
-//                self.presentationMode.wrappedValue.dismiss()
-//            }
-//        })
+        .onAppear() {
+            startTracking()
+        }
         .overlay {
-            if isTracking {
-                CalibrationCameraView(distance: $distance)
-                    .opacity(0.0)
-                    .onChange(of: distanceStatus) { newValue in
-                        if trackingEnabled && newValue != .valid {
-                            isCalibrated = false
-                            isPresentingAlert = true
-                            HapticManager.shared.notification(type: .error)
-                            isTracking = false
+            if isLoading {
+                LoadingView()
+                    .onDisappear() {
+                        if distanceStatus != .valid {
+                            presentAlert()
                         }
-                    }
-                    .onAppear {
-                        let delay = isFirstTime ? 1.0 : 0.0
-                        DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
-                            trackingEnabled = true
-                            isFirstTime = false
-                        }
-                        if isCalibrated == false {
-                            isPresentingAlert = true
-                            HapticManager.shared.notification(type: .error)
-                            isTracking = false
-                        }
-                    }
-                    .onDisappear {
-                        trackingEnabled = false
                     }
             }
         }
-        .sheet(isPresented: $isPresentingSheet) {
+        .overlay {
+            if isTracking {
+                CalibrationCameraView(distance: $distance)
+                    .frame(maxHeight: .infinity)
+                    .opacity(0.0)
+                    .onChange(of: distanceStatus) { newValue in
+                        if !isLoading && newValue != .valid {
+                            presentAlert()
+                        }
+                    }
+                    .onAppear {
+                        if isCalibrated == false {
+                            presentAlert()
+                        }
+                    }
+                    .overlay(alignment: .top, content: {
+                        DistanceCapsule(distance: $distance).zIndex(-1)
+                    })
+            }
+        }
+        .sheet(isPresented: $isPresentingCalibration) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
                 .onDisappear {
-                    isTracking = true
+                    startTracking()
                 }
         }
         .alert(
@@ -118,12 +113,28 @@ struct EyeTestMainView: View {
                 Text(NSLocalizedString("alertButton1", comment: ""))
             }
             Button() {
-                isPresentingSheet = true
+                isPresentingCalibration = true
             } label: {
                 Text(NSLocalizedString("alertButton2", comment: ""))
             }
         } message: {
             Text(NSLocalizedString("alertText", comment: ""))
+        }
+    }
+    
+    private func presentAlert() {
+        print("alert status: \(distanceStatus)")
+        isCalibrated = false
+        isPresentingAlert = true
+        HapticManager.shared.notification(type: .error)
+        isTracking = false
+    }
+    
+    private func startTracking() {
+        isLoading = true
+        isTracking = true
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            isLoading = false
         }
     }
 }
