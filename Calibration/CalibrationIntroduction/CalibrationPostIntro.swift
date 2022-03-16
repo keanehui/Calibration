@@ -53,7 +53,7 @@ struct CalibrationPostIntro: View {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text(NSLocalizedString("postIntroButtonBottom", comment: ""))
-                    .padding(.top, 5)
+                    .padding([.top, .leading, .trailing])
             }
         }
     }

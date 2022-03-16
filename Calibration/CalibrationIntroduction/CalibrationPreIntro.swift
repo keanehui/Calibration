@@ -49,7 +49,7 @@ struct CalibrationPreIntro: View {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text(NSLocalizedString("preIntroButtonBottom", comment: ""))
-                    .padding(.top, 5)
+                    .padding([.top, .leading, .trailing])
             }
         }
     }
