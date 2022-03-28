@@ -11,11 +11,17 @@ import AVFoundation
 struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
     
+    @State private var text: String = ""
+    @FocusState private var focus: Bool
+    
     var body: some View {
         VStack(spacing: 30) {
             Text(NSLocalizedString("homePageText", comment: ""))
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .onTapGesture {
+                    focus.toggle()
+                }
             NavigationLink(destination: CalibrationIntroView()) {
                 Text(NSLocalizedString("homeStartButton", comment: ""))
             }
@@ -29,11 +35,38 @@ struct HomePageView: View {
             } label: {
                 Text(NSLocalizedString("homePlayButton", comment: ""))
             }
+            VStack {
+                TextField("Speech Recognizer", text: $text)
+                    .frame(maxWidth: .infinity, maxHeight: 70)
+                    .disableAutocorrection(true)
+                    .textFieldStyle(.roundedBorder)
+                    .focused($focus)
+                HStack(spacing: 80) {
+                    Button {
+                        
+                    } label: {
+                        Text("Speak")
+                    }
+                    Button {
+                        
+                    } label: {
+                        Text("Stop")
+                    }
+                    Button {
+                        text = ""
+                    } label: {
+                        Text("Reset")
+                    }
+                }
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .top, content: {
-            Text(Bundle.main.preferredLocalizations.first!)
+            VStack {
+                Text(Bundle.main.preferredLocalizations.first!)
+                Text("auth: \(S2TManager.shared.authorized.description)")
+            }
         })
     }
     
