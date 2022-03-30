@@ -82,12 +82,11 @@ class S2TManager {
 //                    self.audioEngine?.stop()
 //                    self.audioEngine?.inputNode.removeTap(onBus: 0)
 //                    if receivedError {
-//                        print("Stop transcribing: \(error!.localizedDescription)")
+//                        print("Error when transcribing: \(error!.localizedDescription)")
 //                    }
 //                }
                 if let result = result { // update result
                     self.transcript = result.bestTranscription.formattedString
-                    print("updated transcript")
                 }
             }
         } catch {
