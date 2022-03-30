@@ -11,8 +11,9 @@ import AVFoundation
 struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
     
-    @State private var text: String = ""
     @FocusState private var focus: Bool
+    @State private var text: String = ""
+    @State private var isSpeaking: Bool = false
     
     var body: some View {
         VStack(spacing: 30) {
@@ -43,19 +44,33 @@ struct HomePageView: View {
                     .focused($focus)
                 HStack(spacing: 80) {
                     Button {
-                        
+                        do {
+                            try S2TManager.shared.start()
+                            isSpeaking = true
+                        } catch {
+                            print("problem in start transcribing")
+                        }
                     } label: {
                         Text("Speak")
                     }
                     Button {
-                        
+                        S2TManager.shared.stop()
+                        isSpeaking = false
+                        S2TManager.shared.fetchTranscript(text: &text)
                     } label: {
                         Text("Stop")
                     }
                     Button {
+                        isSpeaking = false
                         text = ""
                     } label: {
                         Text("Reset")
+                    }
+                }
+                .overlay(alignment: .center) {
+                    if isSpeaking {
+                        Image(systemName: "mic.fill")
+                            .offset(x: 0, y: 40)
                     }
                 }
             }
@@ -65,7 +80,6 @@ struct HomePageView: View {
         .overlay(alignment: .top, content: {
             VStack {
                 Text(Bundle.main.preferredLocalizations.first!)
-                Text("auth: \(S2TManager.shared.authorized.description)")
             }
         })
     }
