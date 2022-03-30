@@ -80,6 +80,7 @@ struct HomePageView: View {
         .overlay(alignment: .top, content: {
             VStack {
                 Text(Bundle.main.preferredLocalizations.first!)
+                Text(S2TManager.shared.locale.identifier)
             }
         })
     }

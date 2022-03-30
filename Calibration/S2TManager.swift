@@ -72,7 +72,7 @@ class S2TManager {
             let (new_audioEngine, new_request) = try Self.prepareEngine()
             self.audioEngine = new_audioEngine
             self.request = new_request
-            self.recognizer = SFSpeechRecognizer(locale: Locale.current)
+            self.recognizer = SFSpeechRecognizer(locale: self.locale)
             HapticManager.shared.impact(style: .medium)
             print("Start transcribing...")
             self.task = self.recognizer!.recognitionTask(with: request!) { result, error in
@@ -87,6 +87,7 @@ class S2TManager {
 //                }
                 if let result = result { // update result
                     self.transcript = result.bestTranscription.formattedString
+                    print("updated transcript")
                 }
             }
         } catch {
@@ -112,6 +113,29 @@ class S2TManager {
         audioEngine = nil
         request = nil
         task = nil
+    }
+    
+}
+
+extension S2TManager {
+    
+    var locale: Locale {
+        var id = ""
+        switch Bundle.main.preferredLocalizations.first! {
+        case "en-GB":
+            id = "en-GB"
+        case "en-US", "en":
+            id = "en-US"
+        case "zh-Hant-HK":
+            id = "zh-HK"
+        case "zh-Hant-TW", "zh-Hant":
+            id = "zh-TW"
+        case "zh-Hans-CN", "zh-Hans":
+            id = "zh-CN"
+        default:
+            id = "en-US"
+        }
+        return Locale(identifier: id)
     }
     
 }
