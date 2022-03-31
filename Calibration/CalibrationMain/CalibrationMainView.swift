@@ -104,7 +104,7 @@ struct CalibrationMainView: View {
         }
         .onChange(of: distanceStatus) { newValue in
             if newValue == .valid {
-                SoundManager.shared.playSound(filename: "pop.mp3")
+                SoundManager.shared.playSound(filename: "double_pop.mp3")
             }
             switch newValue {
             case .missing:
@@ -115,7 +115,7 @@ struct CalibrationMainView: View {
                 T2SManager.shared.speakSentence(vi, delay: 0.0)
             case .valid:
                 let vi = NSLocalizedString("calibrationValidVI", comment: "")
-                T2SManager.shared.speakSentence(vi, delay: 0.0)
+                T2SManager.shared.speakSentence(vi, delay: 0.5)
             case .tooFar:
                 let vi: String = NSLocalizedString("calibrationTooFarVI", comment: "")
                 T2SManager.shared.speakSentence(vi, delay: 0.0)

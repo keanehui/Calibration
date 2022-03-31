@@ -51,7 +51,8 @@ class S2TManager {
         request.requiresOnDeviceRecognition = true // perform transcription locally
         
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .duckOthers])
+        try audioSession.overrideOutputAudioPort(.speaker)
         try audioSession.setAllowHapticsAndSystemSoundsDuringRecording(true)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
@@ -73,7 +74,7 @@ class S2TManager {
             self.audioEngine = new_audioEngine
             self.request = new_request
             self.recognizer = SFSpeechRecognizer(locale: self.locale)
-            HapticManager.shared.impact(style: .medium)
+            startSoundAndHaptic()
             print("Start transcribing...")
             self.task = self.recognizer!.recognitionTask(with: request!) { result, error in
 //                let receivedFinalResult = result?.isFinal ?? false
@@ -97,11 +98,12 @@ class S2TManager {
     
     func fetchTranscript(text: inout String) {
         text = self.transcript
+        print("Transcript: \(self.transcript)")
         self.transcript = ""
     }
     
     func stop() {
-        HapticManager.shared.notification(type: .success)
+        stopSoundAndHaptic()
         reset()
         print("Stop transcribing")
     }
@@ -112,6 +114,16 @@ class S2TManager {
         audioEngine = nil
         request = nil
         task = nil
+    }
+    
+    private func startSoundAndHaptic() {
+        SoundManager.shared.playSound(filename: "beep.mp3")
+        HapticManager.shared.impact(style: .medium)
+    }
+    
+    private func stopSoundAndHaptic() {
+        SoundManager.shared.playSound(filename: "double_click.mp3")
+        HapticManager.shared.notification(type: .success)
     }
     
 }

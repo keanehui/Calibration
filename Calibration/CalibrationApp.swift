@@ -24,8 +24,6 @@ struct CalibrationApp: App {
     }
     
     init() {
-        SoundManager.shared.playSound(filename: "silence.mp3")
-        
         let userDefaults = UserDefaults.standard
         userDefaults.register(
             defaults: ["user_haptic_enabled": true,

@@ -128,8 +128,9 @@ struct EyeTestMainView: View {
         print("alert status: \(distanceStatus)")
         isCalibrated = false
         isPresentingAlert = true
-        HapticManager.shared.notification(type: .error)
         isTracking = false
+        SoundManager.shared.playSound(filename: "alert.mp3")
+        HapticManager.shared.notification(type: .error)
     }
     
     private func startTracking() {
