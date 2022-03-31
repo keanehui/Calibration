@@ -10,8 +10,7 @@ import AVFoundation
 
 struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
-    
-    @FocusState private var focus: Bool
+
     @State private var text: String = ""
     @State private var isSpeaking: Bool = false
     
@@ -20,9 +19,6 @@ struct HomePageView: View {
             Text(NSLocalizedString("homePageText", comment: ""))
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .onTapGesture {
-                    focus.toggle()
-                }
             NavigationLink(destination: CalibrationIntroView()) {
                 Text(NSLocalizedString("homeStartButton", comment: ""))
             }
@@ -39,9 +35,8 @@ struct HomePageView: View {
             VStack {
                 TextField("Speech Recognizer", text: $text)
                     .frame(maxWidth: .infinity, maxHeight: 70)
-                    .disableAutocorrection(true)
                     .textFieldStyle(.roundedBorder)
-                    .focused($focus)
+                    .disabled(true)
                 HStack(spacing: 80) {
                     Button {
                         do {
