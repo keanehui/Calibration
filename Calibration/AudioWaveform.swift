@@ -24,10 +24,9 @@ struct AudioWaveform: View {
             .opacity(0.7)
             Image(systemName: "mic.fill")
                 .foregroundColor(.red)
-                .font(.system(size: 45, design: .rounded))
+                .font(.system(size: 50, design: .rounded))
                 .padding(10)
                 .background(.regularMaterial, in: Circle())
-            .offset(x: 0, y: 5)
         }
         .ignoresSafeArea(edges: .bottom)
         .frame(maxWidth: .infinity, maxHeight: 100)
