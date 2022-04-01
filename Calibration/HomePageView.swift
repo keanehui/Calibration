@@ -62,16 +62,16 @@ struct HomePageView: View {
                         Text("Reset")
                     }
                 }
-                .overlay(alignment: .center) {
-                    if isSpeaking {
-                        Image(systemName: "mic.fill")
-                            .offset(x: 0, y: 40)
-                    }
-                }
             }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .bottom) {
+            if isSpeaking {
+                AudioWaveform(message: "Answer by saying it to your iPhone. ")
+                    .transition(.opacity.animation(.easeInOut))
+            }
+        }
         .overlay(alignment: .top, content: {
             VStack {
                 Text(Bundle.main.preferredLocalizations.first!)
