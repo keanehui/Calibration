@@ -68,8 +68,7 @@ struct HomePageView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
             if isSpeaking {
-                AudioWaveform(message: "Answer by saying it to your iPhone. ")
-                    .transition(.opacity.animation(.easeInOut))
+                AudioWaveform()
             }
         }
         .overlay(alignment: .top, content: {

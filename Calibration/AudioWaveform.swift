@@ -11,39 +11,27 @@ struct AudioWaveform: View {
     var message: String?
     
     var body: some View {
-        VStack {
-            ZStack(alignment: .center) {
-                Group {
-//                    WaveForm(color: .red, amplify: 150)
-//                        .reverse()
-//                        .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
-//                    WaveForm(color: .red, amplify: 150)
-//                        .reverse()
-//                        .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
-                    
-                    WaveForm(color: .green, amplify: 150)
-                        .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
-                    WaveForm(color: .green, amplify: 150)
-                        .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
-                    WaveForm(color: .purple, amplify: 150)
-                        .reverse()
-                    WaveForm(color: .cyan, amplify: 140)
-                }
-                .opacity(0.7)
-                Image(systemName: "mic.fill")
-                    .foregroundColor(.red)
-                    .font(.system(size: 40, design: .rounded))
-                    .padding(10)
-                    .background(.thinMaterial, in: Circle())
-                .offset(x: 0, y: 10)
+        ZStack(alignment: .center) {
+            Group {
+                WaveForm(color: .green, amplify: 150)
+                    .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
+                WaveForm(color: .green, amplify: 150)
+                    .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
+                WaveForm(color: .purple, amplify: 150)
+                    .reverse()
+                WaveForm(color: .cyan, amplify: 140)
             }
-            .frame(maxWidth: .infinity, maxHeight: 100)
-            Text(message ?? "")
-                .fontWeight(.bold)
-                .foregroundColor(.accentColor)
-                .multilineTextAlignment(.center)
+            .opacity(0.7)
+            Image(systemName: "mic.fill")
+                .foregroundColor(.red)
+                .font(.system(size: 45, design: .rounded))
+                .padding(10)
+                .background(.regularMaterial, in: Circle())
+            .offset(x: 0, y: 5)
         }
-        
+        .ignoresSafeArea(edges: .bottom)
+        .frame(maxWidth: .infinity, maxHeight: 100)
+        .transition(.opacity.animation(.easeInOut))
     }
 }
 
@@ -89,6 +77,6 @@ struct WaveForm: View {
 
 struct Waveform_Previews: PreviewProvider {
     static var previews: some View {
-        AudioWaveform(message: "Answer by directly saying it. ")
+        AudioWaveform(message: "Answer by saying it to your iPhone. ")
     }
 }
