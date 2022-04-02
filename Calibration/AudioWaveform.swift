@@ -27,7 +27,7 @@ struct AudioWaveform: View {
                 .foregroundColor(.red)
                 .font(.system(size: 50, design: .rounded))
                 .padding(10)
-                .background(.regularMaterial, in: Circle())
+                .background(.thickMaterial, in: Circle())
                 .onTapGesture {
                     if onTap != nil {
                         onTap!()
