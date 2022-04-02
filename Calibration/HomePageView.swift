@@ -49,9 +49,7 @@ struct HomePageView: View {
                         Text("Speak")
                     }
                     Button {
-                        S2TManager.shared.stop()
-                        isSpeaking = false
-                        S2TManager.shared.fetchTranscript(text: &text)
+                        stopTranscribing()
                     } label: {
                         Text("Stop")
                     }
@@ -68,7 +66,9 @@ struct HomePageView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
             if isSpeaking {
-                AudioWaveform()
+                AudioWaveform(onTap: stopTranscribing)
+                    .frame(height: 130)
+                    
             }
         }
         .overlay(alignment: .top, content: {
@@ -79,6 +79,11 @@ struct HomePageView: View {
         })
     }
     
+    private func stopTranscribing() {
+        S2TManager.shared.stop()
+        isSpeaking = false
+        S2TManager.shared.fetchTranscript(text: &text)
+    }
 }
 
 struct HomePageView_Previews: PreviewProvider {

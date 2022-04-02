@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AudioWaveform: View {
     var message: String?
+    var onTap: (() -> Void)?
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -27,9 +28,13 @@ struct AudioWaveform: View {
                 .font(.system(size: 50, design: .rounded))
                 .padding(10)
                 .background(.regularMaterial, in: Circle())
+                .onTapGesture {
+                    if onTap != nil {
+                        onTap!()
+                    }
+                }
         }
         .ignoresSafeArea(edges: .bottom)
-        .frame(maxWidth: .infinity, maxHeight: 100)
         .transition(.opacity.animation(.easeInOut))
     }
 }
