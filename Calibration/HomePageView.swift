@@ -82,7 +82,7 @@ struct HomePageView: View {
     private func stopTranscribing() {
         S2TManager.shared.stop()
         isSpeaking = false
-        S2TManager.shared.fetchTranscript(text: &text)
+        text = S2TManager.shared.getTranscript()
     }
 }
 

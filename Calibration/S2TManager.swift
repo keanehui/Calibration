@@ -19,7 +19,7 @@ class S2TManager {
     private var task: SFSpeechRecognitionTask?
     private var recognizer: SFSpeechRecognizer?
     
-    var transcript: String
+    private var transcript: String
     
     init() {
         self.authorized = false
@@ -96,10 +96,9 @@ class S2TManager {
         }
     }
     
-    func fetchTranscript(text: inout String) {
-        text = self.transcript
+    func getTranscript() -> String {
         print("Transcript: \(self.transcript)")
-        self.transcript = ""
+        return self.transcript
     }
     
     func stop() {
@@ -114,6 +113,7 @@ class S2TManager {
         audioEngine = nil
         request = nil
         task = nil
+        transcript = ""
     }
     
     private func startSoundAndHaptic() {
