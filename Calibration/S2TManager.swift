@@ -97,7 +97,7 @@ class S2TManager {
     }
     
     func getTranscript() -> String {
-        print("Transcript: \(self.transcript)")
+        print("return transcript: \(self.transcript)")
         return self.transcript
     }
     
@@ -113,7 +113,6 @@ class S2TManager {
         audioEngine = nil
         request = nil
         task = nil
-        transcript = ""
     }
     
     private func startSoundAndHaptic() {

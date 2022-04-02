@@ -12,7 +12,7 @@ struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
 
     @State private var text: String = ""
-    @State private var isSpeaking: Bool = false
+    @State private var shouldShowWave: Bool = false
     
     var body: some View {
         VStack(spacing: 30) {
@@ -41,7 +41,7 @@ struct HomePageView: View {
                     Button {
                         do {
                             try S2TManager.shared.start()
-                            isSpeaking = true
+                            shouldShowWave = true
                         } catch {
                             print("problem in start transcribing")
                         }
@@ -53,22 +53,15 @@ struct HomePageView: View {
                     } label: {
                         Text("Stop")
                     }
-                    Button {
-                        isSpeaking = false
-                        text = ""
-                    } label: {
-                        Text("Reset")
-                    }
                 }
             }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
-            if isSpeaking {
+            if shouldShowWave {
                 AudioWaveform(onTap: stopTranscribing)
                     .frame(height: 130)
-                    
             }
         }
         .overlay(alignment: .top, content: {
@@ -81,8 +74,8 @@ struct HomePageView: View {
     
     private func stopTranscribing() {
         S2TManager.shared.stop()
-        isSpeaking = false
         text = S2TManager.shared.getTranscript()
+        shouldShowWave = false
     }
 }
 
