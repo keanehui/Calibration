@@ -10,29 +10,13 @@ import SwiftUI
 struct EyeTestQuestion: View {
     var imageName: String
     @Binding var text: String
-    @FocusState private var isFocused: Bool
+
     
     var body: some View {
         VStack {
-            Group {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                Text(NSLocalizedString("eyeTestQuestion", comment: ""))
-                    .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .padding()
-            }
-            .onTapGesture {
-                isFocused = false
-            }
-            TextField(NSLocalizedString("eyeTestPlaceHolder", comment: ""), text: $text)
-                .frame(maxWidth: .infinity, maxHeight: 60)
-                .keyboardType(.numberPad)
-                .focused($isFocused)
-                .background(.bar)
-                .cornerRadius(15)
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
         }
     }
 }

@@ -12,6 +12,7 @@ struct EyeTestMainView: View {
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var eyeTestNumber: Int = 1
+    @FocusState private var isFocused: Bool
     @State private var text: String = ""
     
     // *** distance tracking ***
@@ -39,7 +40,9 @@ struct EyeTestMainView: View {
                         .transition(.asymmetric(insertion: .move(edge: .trailing).animation(.easeInOut), removal: .move(edge: .leading)).animation(.easeInOut))
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onTapGesture {
+                isFocused = false
+            }
             .onAppear {
                 let vi: String = NSLocalizedString("eyeTestQuestion", comment: "")
                 T2SManager.shared.speakSentence(vi)
@@ -47,26 +50,53 @@ struct EyeTestMainView: View {
             .onDisappear {
                 T2SManager.shared.stopSpeaking()
             }
-            if eyeTestNumber != 3 {
-                Button {
-                    withAnimation {
-                        eyeTestNumber += 1
-                        text = ""
+            Text(NSLocalizedString("eyeTestQuestion", comment: ""))
+                .font(.system(size: 25, weight: .bold, design: .rounded))
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .padding([.leading, .trailing])
+                .onTapGesture {
+                    isFocused = false
+                }
+            HStack {
+                TextField(NSLocalizedString("eyeTestPlaceHolder", comment: ""), text: $text)
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                    .keyboardType(.numberPad)
+                    .focused($isFocused)
+                    .background(.bar)
+                    .cornerRadius(15)
+                if eyeTestNumber != 3 {
+                    Button {
+                        withAnimation {
+                            eyeTestNumber += 1
+                            text = ""
+                        }
+                    } label: {
+                        Text("Done")
+                            .fontWeight(.bold)
+                            .padding(10)
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .cornerRadius(15)
+                            .frame(maxHeight: 40)
                     }
-                } label: {
-                    Text("Done")
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(.blue)
-                        .cornerRadius(15)
                 }
             }
+            .padding()
+            Spacer()
         }
+        .padding(.top, 30)
         // *** Background distance tracking below ***
         .onAppear() {
             startTracking()
         }
+        .overlay(alignment: .bottom, content: {
+            if !isFocused {
+                AudioWaveformWithMic()
+                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(maxHeight: 100)
+            }
+        })
         .overlay {
             if isLoading {
                 LoadingView()
