@@ -8,40 +8,56 @@
 import SwiftUI
 
 struct AudioWaveform: View {
-    var message: String?
-    var onTap: (() -> Void)?
+    var onTapStart: (() -> Void)?
+    var onTapStop: (() -> Void)?
+    
+    @State private var isSpeaking: Bool = false
     
     var body: some View {
-        ZStack(alignment: .center) {
-            Group {
-                WaveForm(color: .green, amplify: 150)
-                    .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
-                WaveForm(color: .green, amplify: 150)
-                    .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
-                WaveForm(color: .purple, amplify: 150)
-                    .reverse()
-                WaveForm(color: .cyan, amplify: 140)
+        ZStack {
+            if isSpeaking {
+                Group {
+                    WaveForm(color: .green)
+                        .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
+                    WaveForm(color: .green)
+                        .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
+                    WaveForm(color: .purple)
+                        .reverse()
+                    WaveForm(color: .cyan)
+                }
+                .opacity(0.7)
+                .transition(.opacity.animation(.easeInOut))
             }
-            .opacity(0.7)
             Image(systemName: "mic.fill")
-                .foregroundColor(.red)
+                .foregroundColor(isSpeaking ? .red : .gray)
                 .font(.system(size: 50, design: .rounded))
                 .padding(10)
                 .background(.thickMaterial, in: Circle())
                 .onTapGesture {
-                    if onTap != nil {
-                        onTap!()
+                    if !isSpeaking {
+                        if onTapStart != nil {
+                            onTapStart!()
+                        }
+                        withAnimation {
+                            isSpeaking = true
+                        }
+                    }
+                    else if isSpeaking {
+                        if onTapStop != nil {
+                            onTapStop!()
+                        }
+                        withAnimation {
+                            isSpeaking = false
+                        }
                     }
                 }
         }
-        .ignoresSafeArea(edges: .bottom)
-        .transition(.opacity.animation(.easeInOut))
     }
 }
 
 struct WaveForm: View {
     var color: Color
-    var amplify: CGFloat
+    var amplify: CGFloat = 150
     
     var body: some View {
         TimelineView(.animation) { timeLine in
@@ -56,11 +72,8 @@ struct WaveForm: View {
                 context.fill(getPath(size: size), with: .color(color))
                 context.translateBy(x: size.width*2, y: 0)
                 context.fill(getPath(size: size), with: .color(color))
-
             }
         }
-        
-        
     }
     
     private func getPath(size: CGSize) -> Path {
@@ -81,6 +94,6 @@ struct WaveForm: View {
 
 struct Waveform_Previews: PreviewProvider {
     static var previews: some View {
-        AudioWaveform(message: "Answer by saying it to your iPhone. ")
+        AudioWaveform()
     }
 }

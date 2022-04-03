@@ -52,7 +52,7 @@ class S2TManager {
         
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .duckOthers])
-        try audioSession.overrideOutputAudioPort(.speaker)
+//        try audioSession.overrideOutputAudioPort(.speaker)
         try audioSession.setAllowHapticsAndSystemSoundsDuringRecording(true)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode

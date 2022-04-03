@@ -12,7 +12,6 @@ struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
 
     @State private var text: String = ""
-    @State private var shouldShowWave: Bool = false
     
     var body: some View {
         VStack(spacing: 30) {
@@ -37,45 +36,34 @@ struct HomePageView: View {
                     .frame(maxWidth: .infinity, maxHeight: 70)
                     .textFieldStyle(.roundedBorder)
                     .disabled(true)
-                HStack(spacing: 80) {
-                    Button {
-                        do {
-                            try S2TManager.shared.start()
-                            shouldShowWave = true
-                        } catch {
-                            print("problem in start transcribing")
-                        }
-                    } label: {
-                        Text("Speak")
-                    }
-                    Button {
-                        stopTranscribing()
-                    } label: {
-                        Text("Stop")
-                    }
-                }
             }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
-            if shouldShowWave {
-                AudioWaveform(onTap: stopTranscribing)
-                    .frame(height: 130)
-            }
+            AudioWaveform(onTapStart: startTranscribing, onTapStop: stopTranscribing)
+                .edgesIgnoringSafeArea(.bottom)
+                .frame(maxHeight: 120)
         }
-        .overlay(alignment: .top, content: {
+        .overlay(alignment: .top) {
             VStack {
                 Text(Bundle.main.preferredLocalizations.first!)
                 Text(S2TManager.shared.locale.identifier)
             }
-        })
+        }
+    }
+    
+    private func startTranscribing() {
+        do {
+            try S2TManager.shared.start()
+        } catch {
+            print("problem in start transcribing")
+        }
     }
     
     private func stopTranscribing() {
         S2TManager.shared.stop()
         text = S2TManager.shared.getTranscript()
-        shouldShowWave = false
     }
 }
 
