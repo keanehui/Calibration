@@ -51,7 +51,7 @@ class S2TManager {
         request.requiresOnDeviceRecognition = true // perform transcription locally
         
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .duckOthers])
+        try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .mixWithOthers])
 //        try audioSession.overrideOutputAudioPort(.speaker)
         try audioSession.setAllowHapticsAndSystemSoundsDuringRecording(true)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)

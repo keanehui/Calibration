@@ -57,7 +57,7 @@ struct AudioWaveform: View {
 
 struct WaveForm: View {
     var color: Color
-    var amplify: CGFloat = 150
+    var amplify: CGFloat = 70
     
     var body: some View {
         TimelineView(.animation) { timeLine in
