@@ -47,10 +47,13 @@ struct AudioWaveformWithMic: View {
 }
 
 struct AudioWaveform: View {
+    var amplify1: CGFloat?
+    var amplify2: CGFloat?
+    
     var body: some View {
         ZStack {
-            Waveform(color: .cyan, amplify: 100)
-            Waveform(color: .purple, amplify: 50)
+            Waveform(color: .cyan, amplify: amplify1 ?? 100)
+            Waveform(color: .purple, amplify: amplify2 ?? 50)
                 .reverse()
         }
         .opacity(0.7)

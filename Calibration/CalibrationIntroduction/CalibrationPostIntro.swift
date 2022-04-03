@@ -19,9 +19,6 @@ struct CalibrationPostIntro: View {
                 Image(systemName: "person.wave.2.fill").foregroundColor(.blue)
                 Image(systemName: "checkmark").padding(.leading).foregroundColor(.green)
                 Image(systemName: "iphone").foregroundColor(.gray)
-                    .onTapGesture { // DEBUG ONLY
-                        isCalibrated = false
-                    }
             }
             .font(.system(size: 70))
             Text(NSLocalizedString("postIntroTextTop", comment: ""))

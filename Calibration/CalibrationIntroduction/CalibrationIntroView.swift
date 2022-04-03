@@ -13,7 +13,6 @@ struct CalibrationIntroView: View {
     @State private var isCalibrated: Bool = false
     @State private var isPresenting: Bool = false
     @State private var isShowingVolumeMessage: Bool = false
-    @State private var shouldShowWave: Bool = true
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -42,6 +41,11 @@ struct CalibrationIntroView: View {
         }
         .sheet(isPresented: $isPresenting) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
+        }
+        .overlay(alignment: .bottom) {
+            AudioWaveform(amplify1: 30, amplify2: 15)
+                .edgesIgnoringSafeArea(.bottom)
+                .frame(maxWidth: .infinity, maxHeight: 30)
         }
     }
     
