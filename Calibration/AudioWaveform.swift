@@ -10,6 +10,7 @@ import SwiftUI
 struct AudioWaveform: View {
     var onTapStart: (() -> Void)?
     var onTapStop: (() -> Void)?
+    var showMic: Bool?
     
     @State private var isSpeaking: Bool = false
     
@@ -28,29 +29,31 @@ struct AudioWaveform: View {
                 .opacity(0.7)
                 .transition(.opacity.animation(.easeInOut))
             }
-            Image(systemName: "mic.fill")
-                .foregroundColor(isSpeaking ? .red : .gray)
-                .font(.system(size: 50, design: .rounded))
-                .padding(10)
-                .background(.thickMaterial, in: Circle())
-                .onTapGesture {
-                    if !isSpeaking {
-                        if onTapStart != nil {
-                            onTapStart!()
+            if showMic ?? true {
+                Image(systemName: "mic.fill")
+                    .foregroundColor(isSpeaking ? .red : .gray)
+                    .font(.system(size: 50, design: .rounded))
+                    .padding(10)
+                    .background(.thickMaterial, in: Circle())
+                    .onTapGesture {
+                        if !isSpeaking {
+                            if onTapStart != nil {
+                                onTapStart!()
+                            }
+                            withAnimation {
+                                isSpeaking = true
+                            }
                         }
-                        withAnimation {
-                            isSpeaking = true
+                        else if isSpeaking {
+                            if onTapStop != nil {
+                                onTapStop!()
+                            }
+                            withAnimation {
+                                isSpeaking = false
+                            }
                         }
                     }
-                    else if isSpeaking {
-                        if onTapStop != nil {
-                            onTapStop!()
-                        }
-                        withAnimation {
-                            isSpeaking = false
-                        }
-                    }
-                }
+            }
         }
     }
 }
