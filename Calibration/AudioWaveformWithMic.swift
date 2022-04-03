@@ -7,58 +7,57 @@
 
 import SwiftUI
 
-struct AudioWaveform: View {
+struct AudioWaveformWithMic: View {
     var onTapStart: (() -> Void)?
     var onTapStop: (() -> Void)?
-    var showMic: Bool?
     
     @State private var isSpeaking: Bool = false
     
     var body: some View {
         ZStack {
             if isSpeaking {
-                Group {
-                    WaveForm(color: .green)
-                        .offset(x: UIScreen.main.bounds.width*0.5, y: 0)
-                    WaveForm(color: .green)
-                        .offset(x: -UIScreen.main.bounds.width*0.5, y: 0)
-                    WaveForm(color: .purple)
-                        .reverse()
-                    WaveForm(color: .cyan)
-                }
-                .opacity(0.7)
-                .transition(.opacity.animation(.easeInOut))
+                AudioWaveform()
+                    .transition(.move(edge: .bottom).animation(.easeInOut))
             }
-            if showMic ?? true {
-                Image(systemName: "mic.fill")
-                    .foregroundColor(isSpeaking ? .red : .gray)
-                    .font(.system(size: 50, design: .rounded))
-                    .padding(10)
-                    .background(.thickMaterial, in: Circle())
-                    .onTapGesture {
-                        if !isSpeaking {
-                            if onTapStart != nil {
-                                onTapStart!()
-                            }
-                            withAnimation {
-                                isSpeaking = true
-                            }
+            Image(systemName: "mic.fill")
+                .foregroundColor(isSpeaking ? .red : .gray)
+                .font(.system(size: 50, design: .rounded))
+                .padding(10)
+                .background(.thickMaterial, in: Circle())
+                .onTapGesture {
+                    if !isSpeaking {
+                        if onTapStart != nil {
+                            onTapStart!()
                         }
-                        else if isSpeaking {
-                            if onTapStop != nil {
-                                onTapStop!()
-                            }
-                            withAnimation {
-                                isSpeaking = false
-                            }
+                        withAnimation {
+                            isSpeaking = true
                         }
                     }
-            }
+                    else if isSpeaking {
+                        if onTapStop != nil {
+                            onTapStop!()
+                        }
+                        withAnimation {
+                            isSpeaking = false
+                        }
+                    }
+                }
         }
     }
 }
 
-struct WaveForm: View {
+struct AudioWaveform: View {
+    var body: some View {
+        ZStack {
+            Waveform(color: .cyan, amplify: 100)
+            Waveform(color: .purple, amplify: 50)
+                .reverse()
+        }
+        .opacity(0.7)
+    }
+}
+
+struct Waveform: View {
     var color: Color
     var amplify: CGFloat = 70
     

@@ -13,6 +13,7 @@ struct CalibrationIntroView: View {
     @State private var isCalibrated: Bool = false
     @State private var isPresenting: Bool = false
     @State private var isShowingVolumeMessage: Bool = false
+    @State private var shouldShowWave: Bool = true
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -31,10 +32,10 @@ struct CalibrationIntroView: View {
         .navigationTitle("Calibration")
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: isCalibrated) { newValue in
-            speak()
+            playVI()
         }
         .onAppear {
-            speak()
+            playVI()
         }
         .onDisappear {
             T2SManager.shared.stopSpeaking()
@@ -44,7 +45,7 @@ struct CalibrationIntroView: View {
         }
     }
     
-    private func speak() {
+    private func playVI() {
         let vol = AVAudioSession.sharedInstance().outputVolume
         if T2SManager.shared.enabled && vol == 0.0 {
             HapticManager.shared.notification(type: .warning)
