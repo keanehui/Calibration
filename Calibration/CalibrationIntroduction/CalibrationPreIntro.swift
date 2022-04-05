@@ -38,7 +38,8 @@ struct CalibrationPreIntro: View {
             Button {
                 isPresenting = true
             } label: {
-                Text(NSLocalizedString("preIntroButtonTop", comment: ""))                    .fontWeight(.bold)
+                Text(NSLocalizedString("preIntroButtonTop", comment: ""))
+                    .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
                     .foregroundColor(.white)
@@ -52,7 +53,7 @@ struct CalibrationPreIntro: View {
                                 .padding(5)
                                 .background(.ultraThickMaterial, in: Circle())
                                 .offset(x: -10, y: 0)
-                                .transition(.scale.animation(.spring()))
+                                .transition(.opacity.animation(.easeInOut))
                         }
                     }
             }

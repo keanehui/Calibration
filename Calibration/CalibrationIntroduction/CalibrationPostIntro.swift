@@ -53,7 +53,7 @@ struct CalibrationPostIntro: View {
                                 .padding(5)
                                 .background(.ultraThickMaterial, in: Circle())
                                 .offset(x: -10, y: 0)
-                                .transition(.scale.animation(.spring()))
+                                .transition(.opacity.animation(.easeInOut))
                         }
                     }
             }
