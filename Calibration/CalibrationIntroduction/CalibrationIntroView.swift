@@ -13,13 +13,14 @@ struct CalibrationIntroView: View {
     @State private var isCalibrated: Bool = false
     @State private var isPresenting: Bool = false
     @State private var isShowingVolumeMessage: Bool = false
+    @State private var isListeningVI: Bool = false
     
     var body: some View {
         ZStack(alignment: .center) {
             if (!isCalibrated) {
-                CalibrationPreIntro(isPresenting: $isPresenting)
+                CalibrationPreIntro(isPresenting: $isPresenting, isListeningVI: $isListeningVI)
             } else {
-                CalibrationPostIntro(distance: $distance, isCalibrated: $isCalibrated)
+                CalibrationPostIntro(distance: $distance, isCalibrated: $isCalibrated, isListeningVI: $isListeningVI)
             }
             if isShowingVolumeMessage {
                 VolumeTooLow()
@@ -43,9 +44,23 @@ struct CalibrationIntroView: View {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
         }
         .overlay(alignment: .bottom) {
-            AudioWaveform(amplify1: 30, amplify2: 15)
-                .edgesIgnoringSafeArea(.bottom)
-                .frame(maxWidth: .infinity, maxHeight: 30)
+            if isListeningVI {
+                AudioWaveform(amplify1: 30, amplify2: 15)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(maxWidth: .infinity, maxHeight: 30)
+                    .transition(.offset(x: 0, y: 100).animation(.easeInOut))
+            }
+        }
+        .overlay(alignment: .top) {
+            // DEBUG ONLY
+            Button {
+                withAnimation {
+                    isListeningVI.toggle()
+                }
+            } label: {
+                Text("Toggle isListeningVI")
+            }
+
         }
     }
     
@@ -71,6 +86,19 @@ struct CalibrationIntroView: View {
             T2SManager.shared.speakSentence(vi)
         }
     }
+    
+    private func startListeningVI() {
+        withAnimation {
+            isListeningVI = true
+        }
+    }
+    
+    private func stopListeningVI() {
+        withAnimation {
+            isListeningVI = false
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

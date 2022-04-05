@@ -10,6 +10,7 @@ import SwiftUI
 struct CalibrationPreIntro: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var isPresenting: Bool
+    @Binding var isListeningVI: Bool
     
     var body: some View {
         VStack {
@@ -37,13 +38,23 @@ struct CalibrationPreIntro: View {
             Button {
                 isPresenting = true
             } label: {
-                Text(NSLocalizedString("preIntroButtonTop", comment: ""))
-                    .fontWeight(.bold)
+                Text(NSLocalizedString("preIntroButtonTop", comment: ""))                    .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
                     .foregroundColor(.white)
                     .background(.orange)
                     .cornerRadius(10)
+                    .overlay(alignment: .trailing) {
+                        if isListeningVI {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 25, weight: .bold, design: .rounded))
+                                .foregroundColor(.red)
+                                .padding(5)
+                                .background(.ultraThickMaterial, in: Circle())
+                                .offset(x: -10, y: 0)
+                                .transition(.scale.animation(.spring()))
+                        }
+                    }
             }
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
@@ -58,6 +69,6 @@ struct CalibrationPreIntro: View {
 
 struct CalibrationPostIntro_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationPreIntro(isPresenting: .constant(false))
+        CalibrationPreIntro(isPresenting: .constant(false), isListeningVI: .constant(true))
     }
 }

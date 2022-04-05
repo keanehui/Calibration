@@ -11,6 +11,7 @@ struct CalibrationPostIntro: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
+    @Binding var isListeningVI: Bool
     
     var body: some View {
         VStack {
@@ -44,6 +45,17 @@ struct CalibrationPostIntro: View {
                     .foregroundColor(.white)
                     .background(.green)
                     .cornerRadius(10)
+                    .overlay(alignment: .trailing) {
+                        if isListeningVI {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 25, weight: .bold, design: .rounded))
+                                .foregroundColor(.red)
+                                .padding(5)
+                                .background(.ultraThickMaterial, in: Circle())
+                                .offset(x: -10, y: 0)
+                                .transition(.scale.animation(.spring()))
+                        }
+                    }
             }
             Button(action: {
                 isCalibrated = false
@@ -59,6 +71,6 @@ struct CalibrationPostIntro: View {
 
 struct CalibrationPreIntro_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationPostIntro(distance: .constant(40), isCalibrated: .constant(false))
+        CalibrationPostIntro(distance: .constant(40), isCalibrated: .constant(false), isListeningVI: .constant(true))
     }
 }
