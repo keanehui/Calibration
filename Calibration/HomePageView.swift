@@ -41,7 +41,7 @@ struct HomePageView: View {
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
-            AudioWaveformWithMic(onTapStart: startTranscribing, onTapStop: stopTranscribing)
+            AudioWaveformWithMic(onTapToStart: startTranscribing, onTapToStop: stopTranscribing)
                 .edgesIgnoringSafeArea(.bottom)
                 .frame(maxHeight: 100)
         }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AudioWaveformWithMic: View {
-    var onTapStart: (() -> Void)?
-    var onTapStop: (() -> Void)?
+    var onTapToStart: (() -> Void)?
+    var onTapToStop: (() -> Void)?
     
     @State private var isSpeaking: Bool = false
     
@@ -26,17 +26,13 @@ struct AudioWaveformWithMic: View {
                 .background(.thickMaterial, in: Circle())
                 .onTapGesture {
                     if !isSpeaking {
-                        if onTapStart != nil {
-                            onTapStart!()
-                        }
+                        onTapToStart?()
                         withAnimation {
                             isSpeaking = true
                         }
                     }
                     else if isSpeaking {
-                        if onTapStop != nil {
-                            onTapStop!()
-                        }
+                        onTapToStop?()
                         withAnimation {
                             isSpeaking = false
                         }

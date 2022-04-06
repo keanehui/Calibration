@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-class T2SManager {
+class T2SManager: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = T2SManager()
     var enabled: Bool
     
@@ -18,11 +18,15 @@ class T2SManager {
     var pitchMultiplier: Float?
     var voice: AVSpeechSynthesisVoice?
     
-    init() {
+    var onStart: (() -> Void)?
+    var onComplete: (() -> Void)?
+    
+    override init() {
         let userDefaults = UserDefaults.standard
         self.enabled = userDefaults.bool(forKey: "user_voice_instruction_enabled")
         self.rate = userDefaults.float(forKey: "user_voice_instruction_rate")
         self.pitchMultiplier = userDefaults.float(forKey: "user_voice_instruction_pitch")
+        super.init()
         self.voice = AVSpeechSynthesisVoice(identifier: getVoiceId())
         
         let audioSession = AVAudioSession.sharedInstance()
@@ -34,17 +38,20 @@ class T2SManager {
         }
     }
     
-    func speakSentence(_ sentence: String, delay: Double = 1.0) {
+    func speakSentence(_ sentence: String, delay: Double = 1.0, onStart: (() -> Void)? = nil, onComplete: (() -> Void)? = nil) {
         if !enabled {
             return
         }
+        self.utterance = AVSpeechUtterance(string: sentence)
+        self.utterance!.rate = self.rate!
+        self.utterance!.pitchMultiplier = self.pitchMultiplier!
+        self.utterance!.voice = self.voice!
+        self.synthesizer?.stopSpeaking(at: .immediate)
+        self.synthesizer = AVSpeechSynthesizer()
+        self.synthesizer?.delegate = self
+        if onStart != nil { self.onStart = onStart }
+        if onComplete != nil { self.onComplete = onComplete }
         DispatchQueue.main.asyncAfter(deadline: .now()+delay) {
-            self.utterance = AVSpeechUtterance(string: sentence)
-            self.utterance!.rate = self.rate!
-            self.utterance!.pitchMultiplier = self.pitchMultiplier!
-            self.utterance!.voice = self.voice!
-            self.synthesizer?.stopSpeaking(at: .immediate)
-            self.synthesizer = AVSpeechSynthesizer()
             self.synthesizer!.speak(self.utterance!)
         }
     }
@@ -72,6 +79,17 @@ class T2SManager {
         }
         return id
     }
+}
+
+extension T2SManager {
     
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        onStart?()
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        print("End speaking, run onComplete...")
+        onComplete?()
+    }
     
 }
