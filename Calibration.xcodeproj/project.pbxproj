@@ -46,6 +46,9 @@
 		07C4A04027D614E500EF7767 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 07C4A03F27D614E500EF7767 /* silence.mp3 */; };
 		07D2C4FD27AE659D00D3B7EE /* EyeTest1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */; };
 		07E45C7927D0C51900887ABF /* DistanceCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E45C7827D0C51900887ABF /* DistanceCapsule.swift */; };
+		07EE305227FD986100F9F5CB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE305127FD986100F9F5CB /* AppState.swift */; };
+		07EE305427FDA13200F9F5CB /* SpeakerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE305327FDA13200F9F5CB /* SpeakerAnimation.swift */; };
+		07EE305627FDA90200F9F5CB /* MicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE305527FDA90200F9F5CB /* MicAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		07C4A03F27D614E500EF7767 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		07D2C4FC27AE659D00D3B7EE /* EyeTest1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTest1View.swift; sourceTree = "<group>"; };
 		07E45C7827D0C51900887ABF /* DistanceCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceCapsule.swift; sourceTree = "<group>"; };
+		07EE305127FD986100F9F5CB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		07EE305327FDA13200F9F5CB /* SpeakerAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerAnimation.swift; sourceTree = "<group>"; };
+		07EE305527FDA90200F9F5CB /* MicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,8 +158,11 @@
 				073CBFDA27F1BA1800BEAB19 /* SpeechRecognizer.swift */,
 				07C4A03D27D60F4700EF7767 /* Config.swift */,
 				073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */,
+				07EE305127FD986100F9F5CB /* AppState.swift */,
 				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
 				0758D05227F5D36500910153 /* AudioWaveformWithMic.swift */,
+				07EE305327FDA13200F9F5CB /* SpeakerAnimation.swift */,
+				07EE305527FDA90200F9F5CB /* MicAnimation.swift */,
 				07E45C7827D0C51900887ABF /* DistanceCapsule.swift */,
 				077B1D8927CFAB1200511D16 /* CalibrationIntroduction */,
 				077B1D8B27CFAB3C00511D16 /* CalibrationMain */,
@@ -324,7 +333,10 @@
 				07846F0827C62FE60077517A /* CalibrationInstructionView.swift in Sources */,
 				075A270D27CE51D9003C2052 /* EyeTest2View.swift in Sources */,
 				079EB88A27CCDE0900B683E1 /* CalibrationPreIntro.swift in Sources */,
+				07EE305227FD986100F9F5CB /* AppState.swift in Sources */,
+				07EE305427FDA13200F9F5CB /* SpeakerAnimation.swift in Sources */,
 				073B129F27AD0BAB00BAAF9D /* CalibrationIntroView.swift in Sources */,
+				07EE305627FDA90200F9F5CB /* MicAnimation.swift in Sources */,
 				073B129D27AD0BAB00BAAF9D /* CalibrationApp.swift in Sources */,
 				0708413A27D2208A00BE253C /* EyeTestQuestion.swift in Sources */,
 				0758D05327F5D36500910153 /* AudioWaveformWithMic.swift in Sources */,

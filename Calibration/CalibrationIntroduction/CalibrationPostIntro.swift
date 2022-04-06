@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CalibrationPostIntro: View {
-    @Environment(\.presentationMode) var presentationMode
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
-    @Binding var isListeningVI: Bool
+    @Binding var isSpeaking: Bool
+    @ObservedObject var speechRecognizer: SpeechRecognizer
+    @ObservedObject var appState: AppState
+    @Environment(\.presentationMode) var presentationMode
+    
+    @State private var shouldProceed: Bool = false
+    
+    private var isListening: Bool {
+        speechRecognizer.isListening
+    }
     
     var body: some View {
         VStack {
@@ -37,7 +46,7 @@ struct CalibrationPostIntro: View {
             Text(NSLocalizedString("postIntroTextBottom", comment: ""))
                 .font(.title3)
                 .multilineTextAlignment(.center)
-            NavigationLink(destination: EyeTestMainView(distance: $distance, isCalibrated: $isCalibrated)) {
+            NavigationLink(destination: EyeTestMainView(distance: $distance, isCalibrated: $isCalibrated, appState: appState), isActive: $shouldProceed) {
                 Text(NSLocalizedString("postIntroButtonTop", comment: ""))
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
@@ -46,7 +55,7 @@ struct CalibrationPostIntro: View {
                     .background(.green)
                     .cornerRadius(10)
                     .overlay(alignment: .trailing) {
-                        if isListeningVI {
+                        if isListening {
                             Image(systemName: "mic.fill")
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                                 .foregroundColor(.red)
@@ -65,12 +74,49 @@ struct CalibrationPostIntro: View {
                     .padding([.top, .leading, .trailing])
             }
         }
+        .onAppear {
+            var vi: String = ""
+            vi = NSLocalizedString("postIntroVI", comment: "")
+            T2SManager.shared.speakSentence(vi, onStart: { isSpeaking = true }, onComplete: startListeningVI)
+        }
+        .onChange(of: speechRecognizer.transcript, perform: { newValue in
+            if newValue != "" {
+                let result = newValue.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(with: speechRecognizer.locale)
+                if result.contains("yes") {
+                    stopListeningVI()
+                    shouldProceed = true
+                } else if result.contains("no") {
+                    stopListeningVI()
+                    shouldProceed = false
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        })
+    }
+    
+    private func startListeningVI() {
+        isSpeaking = false
+        withAnimation {
+            do {
+                try speechRecognizer.start()
+            } catch {
+                speechRecognizer.reset()
+                print("Error in startListeningVI: \(error)")
+            }
+            
+        }
+    }
+    
+    private func stopListeningVI() {
+        withAnimation {
+            speechRecognizer.stop()
+        }
     }
 }
 
 
 struct CalibrationPreIntro_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationPostIntro(distance: .constant(40), isCalibrated: .constant(false), isListeningVI: .constant(true))
+        CalibrationPostIntro(distance: .constant(40), isCalibrated: .constant(false), isSpeaking: .constant(true), speechRecognizer: SpeechRecognizer(), appState: AppState())
     }
 }

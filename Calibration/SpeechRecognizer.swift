@@ -19,8 +19,10 @@ class SpeechRecognizer: ObservableObject {
     private var recognizer: SFSpeechRecognizer?
     
     @Published var transcript: String
+    @Published var isListening: Bool
     
     init() {
+        self.isListening = false
         self.authorized = false
         self.transcript = ""
     }
@@ -67,12 +69,14 @@ class SpeechRecognizer: ObservableObject {
     }
     
     func start() throws {
+        self.askPermission()
         self.reset()
         do {
             let (new_audioEngine, new_request) = try Self.prepareEngine()
             self.audioEngine = new_audioEngine
             self.request = new_request
             self.recognizer = SFSpeechRecognizer(locale: self.locale)
+            self.isListening = true
             startSoundAndHaptic()
             print("Start transcribing...")
             self.task = self.recognizer!.recognitionTask(with: request!) { result, error in
@@ -87,6 +91,7 @@ class SpeechRecognizer: ObservableObject {
 //                }
                 if let result = result { // update result
                     self.transcript = result.bestTranscription.formattedString
+                    print("transcript updated: \(self.transcript)")
                 }
             }
         } catch {
@@ -101,17 +106,20 @@ class SpeechRecognizer: ObservableObject {
     }
     
     func stop() {
+        self.isListening = false
+        self.transcript = ""
         stopSoundAndHaptic()
         reset()
         print("Stop transcribing")
     }
     
-    private func reset() {
+    func reset() {
         task?.cancel()
         audioEngine?.stop()
         audioEngine = nil
         request = nil
         task = nil
+        self.isListening = false
     }
     
     private func startSoundAndHaptic() {

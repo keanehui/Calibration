@@ -11,11 +11,12 @@ import AVFoundation
 @main
 struct CalibrationApp: App {
     @Environment(\.scenePhase) var scenePhase
+    @StateObject var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                HomePageView()
+                HomePageView(appState: appState)
             }
             .onChange(of: scenePhase) { newValue in
                 fetchSettings()

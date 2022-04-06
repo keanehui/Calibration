@@ -42,6 +42,7 @@ class T2SManager: NSObject, AVSpeechSynthesizerDelegate {
         if !enabled {
             return
         }
+        self.utterance = nil
         self.utterance = AVSpeechUtterance(string: sentence)
         self.utterance!.rate = self.rate!
         self.utterance!.pitchMultiplier = self.pitchMultiplier!
@@ -58,6 +59,11 @@ class T2SManager: NSObject, AVSpeechSynthesizerDelegate {
     
     func stopSpeaking(at boundary: AVSpeechBoundary = .immediate) {
         self.synthesizer?.stopSpeaking(at: boundary)
+    }
+    
+    func resetHandler() {
+        self.onStart = nil
+        self.onComplete = nil
     }
     
     private func getVoiceId() -> String {
@@ -85,11 +91,12 @@ extension T2SManager {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         onStart?()
+        self.onStart = nil
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("End speaking, run onComplete...")
         onComplete?()
+        self.onComplete = nil
     }
     
 }

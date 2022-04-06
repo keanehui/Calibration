@@ -11,6 +11,7 @@ import AVFoundation
 struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
 
+    @ObservedObject var appState: AppState
     @StateObject private var speechRecognizer = SpeechRecognizer()
     
     var body: some View {
@@ -18,7 +19,7 @@ struct HomePageView: View {
             Text(NSLocalizedString("homePageText", comment: ""))
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            NavigationLink(destination: CalibrationIntroView()) {
+            NavigationLink(destination: CalibrationIntroView(appState: appState)) {
                 Text(NSLocalizedString("homeStartButton", comment: ""))
             }
             Button {
@@ -38,6 +39,7 @@ struct HomePageView: View {
                     .disabled(true)
             }
         }
+        .id(appState.rootViewId)
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
@@ -68,6 +70,6 @@ struct HomePageView: View {
 
 struct HomePageView_Previews: PreviewProvider {
     static var previews: some View {
-        HomePageView()
+        HomePageView(appState: AppState())
     }
 }

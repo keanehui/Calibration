@@ -157,7 +157,6 @@ struct CalibrationMainView: View {
     
     private func timerReset() {
         secondsSinceValid = 0.0
-        print("timer is reset")
     }
 }
 

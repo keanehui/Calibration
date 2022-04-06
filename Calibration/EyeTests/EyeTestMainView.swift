@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct EyeTestMainView: View {
-    @Environment(\.presentationMode) var presentationMode
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
+    @ObservedObject var appState: AppState
+    @Environment(\.presentationMode) var presentationMode
     @State private var eyeTestNumber: Int = 1
     @FocusState private var isFocused: Bool
     @State private var text: String = ""
@@ -140,7 +141,7 @@ struct EyeTestMainView: View {
         ) {
             Button(role: .cancel) {
                 isCalibrated = false
-                self.presentationMode.wrappedValue.dismiss()
+                appState.rootViewId = UUID()
             } label: {
                 Text(NSLocalizedString("alertButton1", comment: ""))
             }
@@ -159,6 +160,7 @@ struct EyeTestMainView: View {
         isCalibrated = false
         isPresentingAlert = true
         isTracking = false
+        T2SManager.shared.stopSpeaking()
         SoundManager.shared.playSound(filename: "alert.mp3")
         HapticManager.shared.notification(type: .error)
     }
@@ -174,6 +176,6 @@ struct EyeTestMainView: View {
 
 struct EyeTestView_Previews: PreviewProvider {
     static var previews: some View {
-        EyeTestMainView(distance: .constant(40), isCalibrated: .constant(true))
+        EyeTestMainView(distance: .constant(40), isCalibrated: .constant(true), appState: AppState())
     }
 }
