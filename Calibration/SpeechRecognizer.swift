@@ -10,8 +10,7 @@ import AVFoundation
 import Speech
 import SwiftUI
 
-class S2TManager {
-    static let shared = S2TManager()
+class SpeechRecognizer: ObservableObject {
     var authorized: Bool
     
     private var audioEngine: AVAudioEngine?
@@ -19,7 +18,7 @@ class S2TManager {
     private var task: SFSpeechRecognitionTask?
     private var recognizer: SFSpeechRecognizer?
     
-    private var transcript: String
+    @Published var transcript: String
     
     init() {
         self.authorized = false
@@ -127,7 +126,7 @@ class S2TManager {
     
 }
 
-extension S2TManager {
+extension SpeechRecognizer {
     
     var locale: Locale {
         var id = ""

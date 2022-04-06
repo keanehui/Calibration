@@ -11,7 +11,7 @@ import AVFoundation
 struct HomePageView: View {
     let vi: String = NSLocalizedString("homeVI", comment: "")
 
-    @State private var text: String = ""
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     
     var body: some View {
         VStack(spacing: 30) {
@@ -32,7 +32,7 @@ struct HomePageView: View {
                 Text(NSLocalizedString("homePlayButton", comment: ""))
             }
             VStack {
-                TextField("Speech Recognizer", text: $text)
+                TextField("Speech Recognizer", text: $speechRecognizer.transcript)
                     .frame(maxWidth: .infinity, maxHeight: 70)
                     .textFieldStyle(.roundedBorder)
                     .disabled(true)
@@ -48,22 +48,21 @@ struct HomePageView: View {
         .overlay(alignment: .top) {
             VStack {
                 Text(Bundle.main.preferredLocalizations.first!)
-                Text(S2TManager.shared.locale.identifier)
+                Text(speechRecognizer.locale.identifier)
             }
         }
     }
     
     private func startTranscribing() {
         do {
-            try S2TManager.shared.start()
+            try speechRecognizer.start()
         } catch {
-            print("problem in start transcribing")
+            print("error in start transcribing: \(error)")
         }
     }
     
     private func stopTranscribing() {
-        S2TManager.shared.stop()
-        text = S2TManager.shared.getTranscript()
+        speechRecognizer.stop()
     }
 }
 

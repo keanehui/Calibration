@@ -16,7 +16,7 @@
 		073B12A127AD0BAB00BAAF9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A027AD0BAB00BAAF9D /* Assets.xcassets */; };
 		073B12A427AD0BAB00BAAF9D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */; };
 		073B12AD27AD249400BAAF9D /* CalibrationMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */; };
-		073CBFDB27F1BA1800BEAB19 /* S2TManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CBFDA27F1BA1800BEAB19 /* S2TManager.swift */; };
+		073CBFDB27F1BA1800BEAB19 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CBFDA27F1BA1800BEAB19 /* SpeechRecognizer.swift */; };
 		074AE1D727DF849300BE4EC7 /* VolumeTooLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074AE1D627DF849300BE4EC7 /* VolumeTooLow.swift */; };
 		0758D05327F5D36500910153 /* AudioWaveformWithMic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0758D05227F5D36500910153 /* AudioWaveformWithMic.swift */; };
 		075A270B27CE46B1003C2052 /* SettingsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A270A27CE46B1003C2052 /* SettingsTest.swift */; };
@@ -59,7 +59,7 @@
 		073B12A027AD0BAB00BAAF9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		073B12A327AD0BAB00BAAF9D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		073B12AC27AD249400BAAF9D /* CalibrationMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationMainView.swift; sourceTree = "<group>"; };
-		073CBFDA27F1BA1800BEAB19 /* S2TManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S2TManager.swift; sourceTree = "<group>"; };
+		073CBFDA27F1BA1800BEAB19 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		074AE1D627DF849300BE4EC7 /* VolumeTooLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTooLow.swift; sourceTree = "<group>"; };
 		0758D05227F5D36500910153 /* AudioWaveformWithMic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformWithMic.swift; sourceTree = "<group>"; };
 		075A270A27CE46B1003C2052 /* SettingsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTest.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				07649CCB27C8D2160039148D /* HapticManager.swift */,
 				07BE89DE27CB588B00CA2520 /* SoundManager.swift */,
 				07B48C7727D6401A00B4926F /* T2SManager.swift */,
-				073CBFDA27F1BA1800BEAB19 /* S2TManager.swift */,
+				073CBFDA27F1BA1800BEAB19 /* SpeechRecognizer.swift */,
 				07C4A03D27D60F4700EF7767 /* Config.swift */,
 				073B129C27AD0BAB00BAAF9D /* CalibrationApp.swift */,
 				079EB88527CCC9C100B683E1 /* HomePageView.swift */,
@@ -335,7 +335,7 @@
 				07649CCE27C8D30C0039148D /* HapticTest.swift in Sources */,
 				07649CCC27C8D2160039148D /* HapticManager.swift in Sources */,
 				07B48C7827D6401A00B4926F /* T2SManager.swift in Sources */,
-				073CBFDB27F1BA1800BEAB19 /* S2TManager.swift in Sources */,
+				073CBFDB27F1BA1800BEAB19 /* SpeechRecognizer.swift in Sources */,
 				0708414027D2238000BE253C /* EyeTest3View.swift in Sources */,
 				07C4A03E27D60F4700EF7767 /* Config.swift in Sources */,
 				074AE1D727DF849300BE4EC7 /* VolumeTooLow.swift in Sources */,
