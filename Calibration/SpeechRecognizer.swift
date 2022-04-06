@@ -68,7 +68,7 @@ class SpeechRecognizer: ObservableObject {
         return (audioEngine, request)
     }
     
-    func start() throws {
+    func start(soundAndHapticEnabled: Bool = true) throws {
         self.askPermission()
         self.reset()
         do {
@@ -77,7 +77,9 @@ class SpeechRecognizer: ObservableObject {
             self.request = new_request
             self.recognizer = SFSpeechRecognizer(locale: self.locale)
             self.isListening = true
-            startSoundAndHaptic()
+            if soundAndHapticEnabled {
+                startSoundAndHaptic()
+            }
             print("Start transcribing...")
             self.task = self.recognizer!.recognitionTask(with: request!) { result, error in
 //                let receivedFinalResult = result?.isFinal ?? false
@@ -105,10 +107,12 @@ class SpeechRecognizer: ObservableObject {
         return self.transcript
     }
     
-    func stop() {
+    func stop(soundAndHapticEnabled: Bool = true) {
         self.isListening = false
         self.transcript = ""
-        stopSoundAndHaptic()
+        if soundAndHapticEnabled {
+            stopSoundAndHaptic()
+        }
         reset()
         print("Stop transcribing")
     }

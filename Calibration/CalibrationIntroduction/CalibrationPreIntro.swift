@@ -37,6 +37,8 @@ struct CalibrationPreIntro: View {
             Text(NSLocalizedString("preIntroTextBottom", comment: ""))
                 .font(.title3)
             Button {
+                T2SManager.shared.resetHandler()
+                isSpeaking = false
                 isPresenting = true
             } label: {
                 Text(NSLocalizedString("preIntroButtonTop", comment: ""))

@@ -38,15 +38,15 @@ struct CalibrationIntroView: View {
         .sheet(isPresented: $isPresenting) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)
         }
-        .overlay(alignment: .topTrailing) {
-            if isListening {
-                MicAnimation(size: 30)
-                    .padding()
-            }
-        }
         .overlay(alignment: .topLeading) {
             if isSpeaking {
                 SpeakerAnimation(size: 30)
+                    .padding()
+            }
+        }
+        .overlay(alignment: .topTrailing) {
+            if isListening {
+                MicAnimation(size: 30)
                     .padding()
             }
         }
