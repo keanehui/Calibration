@@ -48,17 +48,6 @@ struct CalibrationPreIntro: View {
                     .foregroundColor(.white)
                     .background(.orange)
                     .cornerRadius(10)
-                    .overlay(alignment: .trailing) {
-                        if isListening {
-                            Image(systemName: "mic.fill")
-                                .font(.system(size: 25, weight: .bold, design: .rounded))
-                                .foregroundColor(.red)
-                                .padding(5)
-                                .background(.ultraThickMaterial, in: Circle())
-                                .offset(x: -10, y: 0)
-                                .transition(.opacity.animation(.easeInOut))
-                        }
-                    }
             }
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()

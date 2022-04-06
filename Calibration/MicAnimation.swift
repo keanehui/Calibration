@@ -22,7 +22,7 @@ struct MicAnimation: View {
                 }
             }
             .font(.system(size: size, weight: .medium, design: .rounded))
-            .foregroundColor(.accentColor)
+            .foregroundColor(.red)
         }
     }
 }
