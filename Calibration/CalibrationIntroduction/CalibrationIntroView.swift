@@ -32,8 +32,7 @@ struct CalibrationIntroView: View {
         .navigationTitle("Calibration")
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
-            T2SManager.shared.stopSpeaking()
-            T2SManager.shared.resetHandler()
+            T2SManager.shared.clear()
         }
         .sheet(isPresented: $isPresenting) {
             CalibrationMainView(distance: $distance, isCalibrated: $isCalibrated)

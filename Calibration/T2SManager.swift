@@ -66,6 +66,11 @@ class T2SManager: NSObject, AVSpeechSynthesizerDelegate {
         self.onComplete = nil
     }
     
+    func clear() {
+        self.stopSpeaking()
+        self.resetHandler()
+    }
+    
     private func getVoiceId() -> String {
         let language_id: String? = Bundle.main.preferredLocalizations.first
         var id: String = ""

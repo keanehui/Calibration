@@ -36,8 +36,6 @@ struct CalibrationPostIntro: View {
                 .font(.title3)
                 .padding(.top)
             Spacer()
-            .disabled(T2SManager.shared.enabled)
-            Spacer()
             Text(NSLocalizedString("postIntroTextBottom", comment: ""))
                 .font(.title3)
                 .multilineTextAlignment(.center)
@@ -68,6 +66,9 @@ struct CalibrationPostIntro: View {
                 Text(NSLocalizedString("postIntroButtonBottom", comment: ""))
                     .padding([.top, .leading, .trailing])
             }
+        }
+        .onDisappear {
+            T2SManager.shared.clear()
         }
         .onAppear {
             var vi: String = ""
