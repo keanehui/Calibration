@@ -32,6 +32,12 @@ struct HomePageView: View {
             } label: {
                 Text(NSLocalizedString("homePlayButton", comment: ""))
             }
+            Button {
+                openSetting()
+            } label: {
+                Text(NSLocalizedString("turnOnVIInSetting", comment: ""))
+            }
+            .disabled(T2SManager.shared.enabled)
             VStack {
                 TextField("Speech Recognizer", text: $speechRecognizer.transcript)
                     .frame(maxWidth: .infinity, maxHeight: 70)
