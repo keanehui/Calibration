@@ -14,8 +14,8 @@ struct CalibrationMainView: View {
     @Binding var distance: Int
     @Binding var isCalibrated: Bool
     @State private var secondsSinceValid: CGFloat = 0.0
-    @State private var timerSubscription: Cancellable?
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var VIAllowed: Bool = true
     
     private var distanceStatus: DistanceStatus {
         getDistanceStatus(distance)
@@ -103,25 +103,32 @@ struct CalibrationMainView: View {
             HapticManager.shared.impact(style: .soft)
         }
         .onChange(of: distanceStatus) { newValue in
+            timerReset()
             if newValue == .valid {
-                SoundManager.shared.playSound(filename: "double_pop.mp3")
+                SoundManager.shared.playSound(filename: "double_pop.mp3") // Sound if valid
             }
-            switch newValue {
-            case .missing:
-                let vi = NSLocalizedString("calibrationMissingVI", comment: "")
-                T2SManager.shared.speakSentence(vi, delay: 0.0)
-            case .tooClose:
-                let vi = NSLocalizedString("calibrationTooCloseVI", comment: "")
-                T2SManager.shared.speakSentence(vi, delay: 0.0)
-            case .valid:
-                let vi = NSLocalizedString("calibrationValidVI", comment: "")
-                T2SManager.shared.speakSentence(vi, delay: 0.5)
-            case .tooFar:
-                let vi: String = NSLocalizedString("calibrationTooFarVI", comment: "")
-                T2SManager.shared.speakSentence(vi, delay: 0.0)
+            T2SManager.shared.stopSpeaking()
+            if VIAllowed {
+                switch distanceStatus {
+                case .missing:
+                    let vi = NSLocalizedString("calibrationMissingVI", comment: "")
+                    T2SManager.shared.speakSentence(vi, delay: 0.0)
+                case .tooClose:
+                    let vi = NSLocalizedString("calibrationTooCloseVI", comment: "")
+                    T2SManager.shared.speakSentence(vi, delay: 0.0)
+                case .valid:
+                    let vi = NSLocalizedString("calibrationValidVI", comment: "")
+                    T2SManager.shared.speakSentence(vi, delay: 0.4)
+                case .tooFar:
+                    let vi: String = NSLocalizedString("calibrationTooFarVI", comment: "")
+                    T2SManager.shared.speakSentence(vi, delay: 0.0)
+                }
+                VIAllowed = false
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                    VIAllowed = true
+                }
             }
         }
-        
     }
     
     private var TimedButton: some View {
