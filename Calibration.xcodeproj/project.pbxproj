@@ -81,6 +81,7 @@
 		078C965327DE1AE000338FD1 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		078C965427DE1B0C00338FD1 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0796CC2127C23442004F53A6 /* ARKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitView.swift; sourceTree = "<group>"; };
+		079CB2C32804316200A48848 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		079EB88527CCC9C100B683E1 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		079EB88727CCDDFD00B683E1 /* CalibrationPostIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPostIntro.swift; sourceTree = "<group>"; };
 		079EB88927CCDE0900B683E1 /* CalibrationPreIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPreIntro.swift; sourceTree = "<group>"; };
@@ -371,6 +372,7 @@
 				078C965227DE1A1D00338FD1 /* zh-Hans */,
 				078C965327DE1AE000338FD1 /* en-GB */,
 				078C965427DE1B0C00338FD1 /* en-US */,
+				079CB2C32804316200A48848 /* zh-HK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
