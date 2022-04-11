@@ -92,6 +92,7 @@ class SpeechRecognizer: ObservableObject {
 //                    }
 //                }
                 if let result = result { // update result
+                    self.transcript = ""
                     self.transcript = result.bestTranscription.formattedString
                     print("transcript updated: \(self.transcript)")
                 }
