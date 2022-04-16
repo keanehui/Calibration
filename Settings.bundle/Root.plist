@@ -62,8 +62,8 @@
 			<key>Values</key>
 			<array>
 				<real>0.6</real>
-				<string>0.5</string>
-				<string>0.25</string>
+				<real>0.5</real>
+				<real>0.25</real>
 			</array>
 			<key>Key</key>
 			<string>user_voice_instruction_rate</string>
