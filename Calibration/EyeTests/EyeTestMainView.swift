@@ -61,6 +61,7 @@ struct EyeTestMainView: View {
                 }
             HStack {
                 TextField(NSLocalizedString("eyeTestPlaceHolder", comment: ""), text: $text)
+                    .padding()
                     .frame(maxWidth: .infinity, maxHeight: 40)
                     .keyboardType(.numberPad)
                     .focused($isFocused)
@@ -166,7 +167,7 @@ struct EyeTestMainView: View {
     }
     
     private func startTracking() {
-        isLoading = true
+//        isLoading = true
         isTracking = true
         DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
             isLoading = false
